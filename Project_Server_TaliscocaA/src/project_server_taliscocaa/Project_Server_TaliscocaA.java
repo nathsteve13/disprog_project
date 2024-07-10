@@ -12,6 +12,8 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -19,36 +21,34 @@ import java.util.ArrayList;
  */
 public class Project_Server_TaliscocaA implements Runnable {
 
-    /**
-     * @param args the command line arguments
-     */
-    static Socket incoming;
-    static String message;
-    static ServerSocket s;
+    ArrayList<HandleSocket> clients = new ArrayList<HandleSocket>();
     Thread t;
-    private static ProjectWebservice_Service service;
-    private static ProjectWebservice port;
-    ArrayList<HandleSocket> client = new ArrayList<HandleSocket>();
-    public Project_Server_TaliscocaA(){
-        try {
-            this.s = new ServerSocket(3500);
-            if (t == null) {
-                t = new Thread((Runnable) this, "Server");
-                t.start();
-            }
-            // Initialize the web service client
-            service = new ProjectWebservice_Service();
-            port = service.getProjectWebservicePort();
-        } catch (Exception e) {
-            e.printStackTrace();
+    Socket incoming;
+    ServerSocket s = new ServerSocket(6000);
+    
+    public Project_Server_TaliscocaA() throws IOException, Exception {
+        if (t == null) {
+            t = new Thread(this, "Server");
+            t.start();
         }
     }
+    
+    public void broadCast(String tmp) {
+        for (HandleSocket client : clients) {
+            client.sendChat(tmp);
+        }
+    }
+
+    public void showChat(String tmp) {
+        broadCast(tmp);
+    }
+    
     public static void main(String[] args) {
-        // TODO code application logic here
-        new Project_Server_TaliscocaA();
         try {
-            int id_temp=0;
-            s = new ServerSocket(3500);
+            Socket incoming;
+            String message;
+            ServerSocket s = new ServerSocket(3500);
+            int id_temp = 0;
             while (true) {
                 incoming = s.accept();
                 BufferedReader msgFromClient = new BufferedReader(new InputStreamReader(incoming.getInputStream()));
@@ -68,14 +68,13 @@ public class Project_Server_TaliscocaA implements Runnable {
                         msgToClient.writeBytes("FALSE\n");
                     }
                 } else if (words[0].equals("REGISTER")) {
-                    boolean isAvailable = port.checkEmail(words[1]);
+                    boolean isAvailable = checkEmail(words[1]);
                     if (isAvailable) {
                         msgToClient.writeBytes("TRUE\n");
                     } else {
                         msgToClient.writeBytes("FALSE\n");
                     }
                 } 
-                // Add additional commands handling as needed
             }
         } catch (IOException e) {
             System.out.println("Error : " + e.getMessage());
@@ -85,7 +84,16 @@ public class Project_Server_TaliscocaA implements Runnable {
 
     @Override
     public void run() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        while (true) {
+            try {
+                incoming = s.accept();
+                HandleSocket hs = new HandleSocket(this, incoming);
+                hs.start();
+                clients.add(hs);
+            } catch (IOException ex) {
+                Logger.getLogger(Project_Server_TaliscocaA.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
 
     private static boolean checkEmail(java.lang.String email) {

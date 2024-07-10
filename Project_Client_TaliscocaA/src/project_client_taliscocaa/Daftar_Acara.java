@@ -10,9 +10,6 @@ package project_client_taliscocaa;
  */
 public class Daftar_Acara extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Daftar_Acara
-     */
     public Daftar_Acara() {
         initComponents();
     }
@@ -124,45 +121,11 @@ public class Daftar_Acara extends javax.swing.JFrame {
 
     private void btnReservasiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReservasiActionPerformed
         // TODO add your handling code here:
-        int selectedRow = tableDaftarAcara.getSelectedRow();
-        if (selectedRow == -1) {
-            JOptionPane.showMessageDialog(this, "Pilih acara yang ingin diklaim terlebih dahulu.");
-            return;
-        }
-
-        String acaraIdStr = tableDaftarAcara.getValueAt(selectedRow, 0).toString(); // Ambil ID acara sebagai String
-        int acaraId = Integer.parseInt(acaraIdStr); // Konversi String ke Integer
-        System.out.println(acaraId);
-        String statusAcara = (String) tableDaftarAcara.getValueAt(selectedRow, 7); // Asumsikan status acara ada di kolom kedelapan
-        String kapasitas = tableDaftarAcara.getValueAt(selectedRow, 5).toString();
-        int kapasitasInt = Integer.parseInt(kapasitas);
-        System.out.println(statusAcara);
-        if (!statusAcara.equals("Aktif")) {
-            JOptionPane.showMessageDialog(this, "Acara tidak bisa diklaim. Status acara: " + statusAcara);
-            return;
-        }
-        int userId = Login.getLoggedInUserId();
-        int bookingAmount = (int) spinnerQtty.getValue(); // Ambil nilai dari spinner
-        try {
-            claimAcara(acaraId,bookingAmount,userId);
-            if(bookingAmount > kapasitasInt){
-                JOptionPane.showMessageDialog(this, "Kapasitas tidak memenuhi");
-            }
-            else{
-                JOptionPane.showMessageDialog(this, "Acara berhasil diklaim.");
-                refreshTable(); // Perbarui tabel setelah klaim
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-            JOptionPane.showMessageDialog(this, "Terjadi kesalahan saat mengklaim acara.");
-        }
+        
     }//GEN-LAST:event_btnReservasiActionPerformed
 
     private void btnMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenuActionPerformed
-        // TODO add your handling code here:
-        FormUtama menu = new FormUtama();
-        menu.show();
+        
     }//GEN-LAST:event_btnMenuActionPerformed
 
     /**

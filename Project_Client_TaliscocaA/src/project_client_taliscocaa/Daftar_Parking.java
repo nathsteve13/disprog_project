@@ -96,31 +96,7 @@ public class Daftar_Parking extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnReservasiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReservasiActionPerformed
-        // TODO add your handling code here:
-        int selectedRow = tableDaftarParkir.getSelectedRow();
-        if (selectedRow == -1) {
-            JOptionPane.showMessageDialog(this, "Pilih slot parkir yang ingin diklaim terlebih dahulu.");
-            return;
-        }
-
-        String parkingIdStr = tableDaftarParkir.getValueAt(selectedRow, 0).toString(); // Ambil ID parkir sebagai String
-        int parkingId = Integer.parseInt(parkingIdStr); // Konversi String ke Integer
-        System.out.println(parkingId);
-        String statusParking = (String) tableDaftarParkir.getValueAt(selectedRow, 3); // Asumsikan status parkir ada di kolom keempat
-        System.out.println(statusParking);
-        if (!statusParking.equals("AVAILABLE")) {
-            JOptionPane.showMessageDialog(this, "Slot parkir tidak bisa diklaim. Status parkir: " + statusParking);
-            return;
-        }
-
-        try {
-            claimParking(parkingId);
-            JOptionPane.showMessageDialog(this, "Slot parkir berhasil diklaim.");
-            refreshTable(); // Perbarui tabel setelah klaim
-        } catch (Exception e) {
-            e.printStackTrace();
-            JOptionPane.showMessageDialog(this, "Terjadi kesalahan saat mengklaim slot parkir.");
-        }
+        
     }//GEN-LAST:event_btnReservasiActionPerformed
 
     /**

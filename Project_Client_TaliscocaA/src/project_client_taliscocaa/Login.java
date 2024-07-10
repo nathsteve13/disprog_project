@@ -4,6 +4,13 @@
  */
 package project_client_taliscocaa;
 
+import java.io.BufferedReader;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.Socket;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Jason Nathaniel
@@ -117,30 +124,24 @@ public class Login extends javax.swing.JFrame {
             Socket clientSocket = new Socket("localhost", 3500);
             DataOutputStream server = new DataOutputStream(clientSocket.getOutputStream());
 
-            //mengirimkan data login ke server
             server.writeBytes("LOGIN~" + txtUsername.getText() + "~" + txtPassword.getText() + "\n");
 
-            //menerima respon dari server
             BufferedReader messageFromServer = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
             String hasil = messageFromServer.readLine();
             System.out.println(hasil);
 
             if(hasil.startsWith("TRUE")) {
-                // Lakukan tindakan setelah login berhasil
                 String[] results = hasil.split("~");
-                loggedInUserId = Integer.parseInt(results[1]); // Simpan user_id
-                System.out.println(loggedInUserId);
                 JOptionPane.showMessageDialog(null, "Login berhasil!");
-                FormUtama main = new FormUtama();
+                Menu main = new Menu();
+                main.user_id = Integer.parseInt(results[1]);
                 main.show();
 
             } else if(hasil.equals("FALSE")) {
-
-                // Tampilkan pesan kesalahan jika login gagal
                 JOptionPane.showMessageDialog(null, "Login gagal, periksa username dan password Anda!");
             }
             clientSocket.close();
-        } catch (IOException e) {
+        } catch (Exception e) {
             System.out.println("Error: " + e.getMessage());
         }
     }//GEN-LAST:event_btnLoginActionPerformed

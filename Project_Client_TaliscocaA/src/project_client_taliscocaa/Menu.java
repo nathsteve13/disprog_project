@@ -16,7 +16,7 @@ public class Menu extends javax.swing.JFrame {
     public Menu() {
         initComponents();
     }
-
+    public int user_id;
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -92,9 +92,7 @@ public class Menu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void menuItemDaftarAcaraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemDaftarAcaraActionPerformed
-        // TODO add your handling code here:
-        DaftarAcara acara = new DaftarAcara();
-        acara.show();
+        
     }//GEN-LAST:event_menuItemDaftarAcaraActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
