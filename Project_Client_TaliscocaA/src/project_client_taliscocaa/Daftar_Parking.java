@@ -26,21 +26,102 @@ public class Daftar_Parking extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        labelDaftarParkir = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tableDaftarParkir = new javax.swing.JTable();
+        btnReservasi = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        labelDaftarParkir.setFont(new java.awt.Font("Serif", 1, 36)); // NOI18N
+        labelDaftarParkir.setText("DAFTAR PARKIR");
+
+        tableDaftarParkir.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "nama_parking", "total_slot", "status_parking", "tanggal_parkir"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(tableDaftarParkir);
+
+        btnReservasi.setText("Reservasi");
+        btnReservasi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnReservasiActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(0, 2, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnReservasi)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 815, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(7, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(275, 275, 275)
+                .addComponent(labelDaftarParkir)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(labelDaftarParkir)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnReservasi)
+                .addGap(21, 21, 21))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnReservasiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReservasiActionPerformed
+        // TODO add your handling code here:
+        int selectedRow = tableDaftarParkir.getSelectedRow();
+        if (selectedRow == -1) {
+            JOptionPane.showMessageDialog(this, "Pilih slot parkir yang ingin diklaim terlebih dahulu.");
+            return;
+        }
+
+        String parkingIdStr = tableDaftarParkir.getValueAt(selectedRow, 0).toString(); // Ambil ID parkir sebagai String
+        int parkingId = Integer.parseInt(parkingIdStr); // Konversi String ke Integer
+        System.out.println(parkingId);
+        String statusParking = (String) tableDaftarParkir.getValueAt(selectedRow, 3); // Asumsikan status parkir ada di kolom keempat
+        System.out.println(statusParking);
+        if (!statusParking.equals("AVAILABLE")) {
+            JOptionPane.showMessageDialog(this, "Slot parkir tidak bisa diklaim. Status parkir: " + statusParking);
+            return;
+        }
+
+        try {
+            claimParking(parkingId);
+            JOptionPane.showMessageDialog(this, "Slot parkir berhasil diklaim.");
+            refreshTable(); // Perbarui tabel setelah klaim
+        } catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Terjadi kesalahan saat mengklaim slot parkir.");
+        }
+    }//GEN-LAST:event_btnReservasiActionPerformed
 
     /**
      * @param args the command line arguments
@@ -78,5 +159,9 @@ public class Daftar_Parking extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnReservasi;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel labelDaftarParkir;
+    private javax.swing.JTable tableDaftarParkir;
     // End of variables declaration//GEN-END:variables
 }
