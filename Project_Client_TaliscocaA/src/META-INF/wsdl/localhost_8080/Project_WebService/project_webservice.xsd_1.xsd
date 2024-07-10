@@ -1,0 +1,139 @@
+<?xml version='1.0' encoding='UTF-8'?><!-- Published by JAX-WS RI (http://jax-ws.java.net). RI's version is Metro/2.4.3 (RELEASE-2.4.3-ad3323c; 2019-01-21T17:46:06+0000) JAXWS-RI/2.3.2 JAXWS-API/2.3.2 JAXB-RI/2.3.2 JAXB-API/2.3.2 git-revision#unknown. --><xs:schema xmlns:tns="http://services.project_webservice.com/" xmlns:xs="http://www.w3.org/2001/XMLSchema" version="1.0" targetNamespace="http://services.project_webservice.com/">
+
+<xs:element name="checkEmail" type="tns:checkEmail"/>
+
+<xs:element name="checkEmailResponse" type="tns:checkEmailResponse"/>
+
+<xs:element name="checkLogin" type="tns:checkLogin"/>
+
+<xs:element name="checkLoginResponse" type="tns:checkLoginResponse"/>
+
+<xs:element name="insertDataReservasiAcara" type="tns:insertDataReservasiAcara"/>
+
+<xs:element name="insertDataReservasiAcaraResponse" type="tns:insertDataReservasiAcaraResponse"/>
+
+<xs:element name="updateDataAcara" type="tns:updateDataAcara"/>
+
+<xs:element name="updateDataAcaraResponse" type="tns:updateDataAcaraResponse"/>
+
+<xs:element name="updateDataParking" type="tns:updateDataParking"/>
+
+<xs:element name="updateDataParkingResponse" type="tns:updateDataParkingResponse"/>
+
+<xs:element name="updateDataReservasiAcara" type="tns:updateDataReservasiAcara"/>
+
+<xs:element name="updateDataReservasiAcaraResponse" type="tns:updateDataReservasiAcaraResponse"/>
+
+<xs:element name="viewListDataAcara" type="tns:viewListDataAcara"/>
+
+<xs:element name="viewListDataAcaraResponse" type="tns:viewListDataAcaraResponse"/>
+
+<xs:element name="viewListDataParking" type="tns:viewListDataParking"/>
+
+<xs:element name="viewListDataParkingResponse" type="tns:viewListDataParkingResponse"/>
+
+<xs:element name="viewListDataReservasiAcara" type="tns:viewListDataReservasiAcara"/>
+
+<xs:element name="viewListDataReservasiAcaraResponse" type="tns:viewListDataReservasiAcaraResponse"/>
+
+<xs:complexType name="insertDataReservasiAcara">
+<xs:sequence>
+<xs:element name="jumlah_tiket" type="xs:int"/>
+<xs:element name="user_id" type="xs:int"/>
+<xs:element name="acara_id" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="insertDataReservasiAcaraResponse">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="checkLogin">
+<xs:sequence>
+<xs:element name="username" type="xs:string" minOccurs="0"/>
+<xs:element name="password" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="checkLoginResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="checkEmail">
+<xs:sequence>
+<xs:element name="email" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="checkEmailResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:boolean"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="viewListDataAcara">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="viewListDataAcaraResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="viewListDataParking">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="viewListDataParkingResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="updateDataAcara">
+<xs:sequence>
+<xs:element name="status_acara" type="xs:string" minOccurs="0"/>
+<xs:element name="kapasitas" type="xs:int"/>
+<xs:element name="acara_id" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="updateDataAcaraResponse">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="viewListDataReservasiAcara">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="viewListDataReservasiAcaraResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="updateDataParking">
+<xs:sequence>
+<xs:element name="parking_id" type="xs:int"/>
+<xs:element name="total_slotparkir" type="xs:int"/>
+<xs:element name="status_parking" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="updateDataParkingResponse">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="updateDataReservasiAcara">
+<xs:sequence>
+<xs:element name="reservasi_id" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="updateDataReservasiAcaraResponse">
+<xs:sequence/>
+</xs:complexType>
+</xs:schema>

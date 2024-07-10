@@ -124,14 +124,14 @@ public class Login extends javax.swing.JFrame {
             Socket clientSocket = new Socket("localhost", 3500);
             DataOutputStream server = new DataOutputStream(clientSocket.getOutputStream());
 
-            server.writeBytes("LOGIN~" + txtUsername.getText() + "~" + txtPassword.getText() + "\n");
+            server.writeBytes("LOGIN%" + txtUsername.getText() + "%" + txtPassword.getText() + "\n");
 
             BufferedReader messageFromServer = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
             String hasil = messageFromServer.readLine();
             System.out.println(hasil);
 
             if(hasil.startsWith("TRUE")) {
-                String[] results = hasil.split("~");
+                String[] results = hasil.split("%");
                 JOptionPane.showMessageDialog(null, "Login berhasil!");
                 Menu main = new Menu();
                 main.user_id = Integer.parseInt(results[1]);

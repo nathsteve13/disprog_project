@@ -48,25 +48,26 @@ public class Project_Server_TaliscocaA implements Runnable {
             Socket incoming;
             String message;
             ServerSocket s = new ServerSocket(3500);
-            int id_temp = 0;
             while (true) {
                 incoming = s.accept();
                 BufferedReader msgFromClient = new BufferedReader(new InputStreamReader(incoming.getInputStream()));
                 message = msgFromClient.readLine();
                 System.out.println(message);
-                String[] words = message.split("~");
+                String[] words = message.split("%");
                 DataOutputStream msgToClient = new DataOutputStream(incoming.getOutputStream());
 
                 if (words[0].equals("LOGIN")) {
                     String result = checkLogin(words[1], words[2]);
                     System.out.println(result);
-                    String[] results=result.split("~");
-                    id_temp = Integer.parseInt(results[1]);
-                    if (result.startsWith("TRUE")) {
-                        msgToClient.writeBytes("TRUE~"+id_temp+"\n");
-                    } else if (result.startsWith("FALSE")){      
+                    
+                    String[] results = result.split("%");
+                    
+                    if (results[0].equals("TRUE")) {
+                        msgToClient.writeBytes("TRUE%"+results[1]+"\n");
+                    } else if (results[0].equals("FALSE")){      
                         msgToClient.writeBytes("FALSE\n");
                     }
+                    
                 } else if (words[0].equals("REGISTER")) {
                     boolean isAvailable = checkEmail(words[1]);
                     if (isAvailable) {
