@@ -9,7 +9,7 @@ import com.project_webservice.model.Acara;
 import com.project_webservice.model.Reservasi_acara;
 import com.project_webservice.model.User;
 import java.util.ArrayList;
-import javax.jws.WebService;
+import javax.jws.WebService;    
 import javax.jws.WebParam;
     
 import javax.jws.WebMethod;
@@ -48,10 +48,10 @@ public class project_webservice {
         return p.viewListData();
     }
     @WebMethod(operationName = "updateDataParking")
-    public void updateDataParking( @WebParam(name = "id") int id)
+    public void updateDataParking( @WebParam(name = "parking_id") int parking_id ,@WebParam(name = "total_slotparkir") int total_slotparkir, 
+            @WebParam(name = "status_parking") String status_parking)
     {
-        Parking p = new Parking();
-        p.setParking_id(id);    
+        Parking p = new Parking(parking_id,total_slotparkir,status_parking);           
         p.updateData();
     }
     
