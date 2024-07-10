@@ -58,4 +58,10 @@ public class project_webservice {
         a = new Acara(status_acara, kapasitas, acara_id);
         a.updateData();
     }
+    
+    @WebMethod(operationName = "viewListDataAcara")
+    public ArrayList<String> viewListDataAcara() {
+        a = new Acara();
+        return a.viewListData();
+    }
 }

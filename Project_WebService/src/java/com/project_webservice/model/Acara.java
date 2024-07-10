@@ -34,6 +34,17 @@ public class Acara extends MyModel{
         this.status_acara = status_acara;
     }
     
+    public Acara() {
+        this.acara_id = 0;
+        this.nama_acara = "";
+        this.deskripsi = "";
+        this.tanggal_acara = new java.sql.Timestamp(System.currentTimeMillis());
+        this.lokasi_acara = "";
+        this.kapasitas = 0;
+        this.harga_tiket = 0;
+        this.status_acara = "";
+    }
+    
     public Acara(String status_acara, int kapasitas, int acara_id) {
         this.acara_id = acara_id;
         this.status_acara = status_acara;
