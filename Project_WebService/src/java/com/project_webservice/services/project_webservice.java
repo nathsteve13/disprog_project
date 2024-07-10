@@ -4,7 +4,9 @@
  */
 package com.project_webservice.services;
 
+import com.project_webservice.model.Parking;
 import com.project_webservice.model.User;
+import java.util.ArrayList;
 import javax.jws.WebService;
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
@@ -31,4 +33,17 @@ public class project_webservice {
         u = new User(email);
         return u.checkEmail();
     }
+    @WebMethod(operationName = "viewListDataParking")
+    public ArrayList<String> viewListDataParking(){
+        Parking p = new Parking();
+        return p.viewListData();
+    }
+    @WebMethod(operationName = "updateDataParking")
+    public void updateDataParking( @WebParam(name = "id") int id)
+    {
+        Parking p = new Parking();
+        p.setParking_id(id);    
+        p.updateData();
+    }
+    
 }
