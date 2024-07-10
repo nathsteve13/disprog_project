@@ -35,6 +35,11 @@ public class Parking extends MyModel{
         this.status_parkir = status_parkir;
         this.tanggal_parkir = tanggal_parkir;
     }
+    public Parking(int parking_id, int total_slotparkir,String status_parking){
+        this.parking_id=parking_id;
+        this.total_slotparkir=total_slotparkir;
+        this.status_parkir=status_parking;
+    }
 
     public int getParking_id() {
         return parking_id;
@@ -87,55 +92,18 @@ public class Parking extends MyModel{
     @Override
     public void updateData() {
         try {
-        if (!MyModel.conn.isClosed()) {
-            // Check if parking slot is already Not Available
-            PreparedStatement checkStatus = MyModel.conn.prepareStatement(
-                "SELECT total_slotparkir, status_parking FROM parking WHERE id = ?"
-            );  
-            checkStatus.setInt(1, this.parking_id);
-            this.result = checkStatus.executeQuery();
-
-            if (this.result.next()) {
-                String currentStatus = this.result.getString("status_parking");
-                int currentTotalSlot = this.result.getInt("total_slotparkir");
-
-                if ("Not Available".equals(currentStatus)) {
-                    System.out.println("Parking slot is already Not Available and cannot be claimed.");
-                    currentTotalSlot = 0;
-                    return;
-                }
-
-                if (currentTotalSlot <= 0) {
-                    System.out.println("Parking slot is fully occupied and cannot be claimed.");
-                    return;
-                }
-
-                // Decrease total_slot by 1
-                currentTotalSlot--;
-
-                // Change status_parking to Not Available if total_slot reaches 0
-                if (currentTotalSlot == 0) {
-                    currentStatus = "NOT AVAILABLE";
-                }
-
-                // Update total_slot and status_parking
-                PreparedStatement updateStatus = MyModel.conn.prepareStatement(
-                    "UPDATE parking SET total_slotparkir = ?, status_parking = ? WHERE id = ?"
-                );
-                updateStatus.setInt(1, currentTotalSlot);
-                updateStatus.setString(2, currentStatus);
-                updateStatus.setInt(3, this.parking_id);
-                updateStatus.executeUpdate();
-                updateStatus.close();
-
-                System.out.println("Parking slot with ID " + this.parking_id + " successfully claimed. Total slots decreased by 1.");
+            if (!MyModel.conn.isClosed()) {
+                PreparedStatement sql = MyModel.conn.prepareStatement(
+                        "UPDATE parking SET status_parking = ?, total_slotparkir = ? WHERE parking_id = ?");
+                sql.setString(1, this.status_parkir);
+                sql.setInt(2, this.total_slotparkir);
+                sql.setInt(3, this.parking_id);
+                sql.executeUpdate();
+                sql.close();
             }
-
-            checkStatus.close();
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
         }
-    } catch (Exception e) {
-        System.out.println("Error in claimParking: " + e);
-    }
 }    
 
     @Override
