@@ -6,6 +6,7 @@ package com.project_webservice.services;
 
 import com.project_webservice.model.Parking;
 import com.project_webservice.model.Acara;
+import com.project_webservice.model.Reservasi_acara;
 import com.project_webservice.model.User;
 import java.util.ArrayList;
 import javax.jws.WebService;
@@ -26,9 +27,12 @@ public class project_webservice {
     
     User u;
     Acara a;
+    Reservasi_acara ar;
     @WebMethod(operationName = "checkLogin")
     public String checkLogin(@WebParam(name = "username") String username, @WebParam(name = "password") String password) {
-        u = new User(username, password);
+        u = new User();
+        u.setUsername(username);
+        u.setPassword(password);
         return u.checkLogin();
     }
     
@@ -63,5 +67,25 @@ public class project_webservice {
     public ArrayList<String> viewListDataAcara() {
         a = new Acara();
         return a.viewListData();
+    }
+    
+    @WebMethod(operationName = "viewListDataReservasiAcara")
+    public ArrayList<String> viewListDataReservasiAcara() {
+        ar = new Reservasi_acara();
+        return ar.viewListData();
+    }
+    
+    @WebMethod(operationName = "updateDataReservasiAcara") 
+    public void updateDataReservasiAcara(@WebParam(name = "reservasi_id") int reservasi_id) {
+        ar = new Reservasi_acara(reservasi_id);
+        ar.updateData();
+    }
+    
+    @WebMethod(operationName = "insertDataReservasiAcara") 
+    public void insertDataReservasiAcara(@WebParam(name = "jumlah_tiket") int jumlah_tiket, 
+            @WebParam(name = "user_id") int user_id,
+            @WebParam(name = "acara_id") int acara_id) {
+        ar = new Reservasi_acara(jumlah_tiket, user_id, acara_id);
+        ar.insertData();
     }
 }

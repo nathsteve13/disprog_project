@@ -93,9 +93,9 @@ public class User extends MyModel{
                 );
                 sql.setString(1, this.username);
                 sql.setString(2, this.password);
-                
+                this.result = sql.executeQuery();
                 if (this.result.next()) {
-                    this.setUser_id(this.result.getInt("id"));
+                    this.setUser_id(this.result.getInt("user_id"));
                     this.setUsername(this.result.getString("username"));
                     this.setPassword(this.result.getString("password"));
                     this.setNama(this.result.getString("nama"));
