@@ -5,11 +5,13 @@
 package com.project_webservice.services;
 
 import com.project_webservice.model.Parking;
+import com.project_webservice.model.Acara;
 import com.project_webservice.model.User;
 import java.util.ArrayList;
 import javax.jws.WebService;
-import javax.jws.WebMethod;
 import javax.jws.WebParam;
+    
+import javax.jws.WebMethod;
 
 /**
  *
@@ -23,16 +25,19 @@ public class project_webservice {
      */
     
     User u;
+    Acara a;
     @WebMethod(operationName = "checkLogin")
     public String checkLogin(@WebParam(name = "username") String username, @WebParam(name = "password") String password) {
         u = new User(username, password);
         return u.checkLogin();
     }
+    
     @WebMethod(operationName = "checkEmail")
     public boolean checkEmail(@WebParam(name = "email") String email) {
         u = new User(email);
         return u.checkEmail();
     }
+    
     @WebMethod(operationName = "viewListDataParking")
     public ArrayList<String> viewListDataParking(){
         Parking p = new Parking();
@@ -46,4 +51,11 @@ public class project_webservice {
         p.updateData();
     }
     
+    @WebMethod(operationName = "updateDataAcara") 
+    public void updateDataAcara(@WebParam(name = "status_acara") String status_acara, 
+            @WebParam(name = "kapasitas") int kapasitas, 
+            @WebParam(name = "acara_id") int acara_id) {
+        a = new Acara(status_acara, kapasitas, acara_id);
+        a.updateData();
+    }
 }
