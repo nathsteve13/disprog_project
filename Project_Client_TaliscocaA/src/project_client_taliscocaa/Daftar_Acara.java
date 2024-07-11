@@ -4,6 +4,11 @@
  */
 package project_client_taliscocaa;
 
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Jason Nathaniel
@@ -12,6 +17,7 @@ public class Daftar_Acara extends javax.swing.JFrame {
 
     public Daftar_Acara() {
         initComponents();
+        refreshTable();
     }
 
     /**
@@ -120,14 +126,69 @@ public class Daftar_Acara extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnReservasiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReservasiActionPerformed
-        // TODO add your handling code here:
+        int selectedRow = tableDaftarAcara.getSelectedRow();
         
+        if (selectedRow == -1) {
+            JOptionPane.showMessageDialog(this, "Pilih acara yang ingin diklaim terlebih dahulu.");
+            return;
+        }
+        
+        String acaraIdStr = tableDaftarAcara.getValueAt(selectedRow, 0).toString(); 
+        int acaraId = Integer.parseInt(acaraIdStr); 
+        String statusAcara = (String) tableDaftarAcara.getValueAt(selectedRow, 7);
+        String kapasitas = tableDaftarAcara.getValueAt(selectedRow, 5).toString();
+        int kapasitasInt = Integer.parseInt(kapasitas);
+        
+        if (!statusAcara.equals("Active")) {
+            JOptionPane.showMessageDialog(this, "Acara tidak bisa diklaim. Status acara: " + statusAcara);
+            return;
+        }
+        
+        Menu form = new Menu();
+        int user_id = form.user_id;
+        
+        int bookingAmount = (int) spinnerQtty.getValue();
+        try {
+            
+            if(bookingAmount > kapasitasInt){
+                JOptionPane.showMessageDialog(this, "Kapasitas tidak memenuhi");
+            }
+            else{
+                insertDataReservasiAcara(bookingAmount, user_id, acaraId);
+                
+                if (kapasitasInt - bookingAmount > 0) {
+                    updateDataAcara("Active", kapasitasInt - bookingAmount, acaraId);
+                } else {
+                    updateDataAcara("Not Active", kapasitasInt - bookingAmount, acaraId);
+                }
+                
+                updateDataAcara(statusAcara, kapasitasInt, acaraId);
+                JOptionPane.showMessageDialog(this, "Acara berhasil diklaim.");
+                refreshTable(); 
+            }   
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Terjadi kesalahan saat mengklaim acara.");
+        }
     }//GEN-LAST:event_btnReservasiActionPerformed
 
     private void btnMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenuActionPerformed
-        
+        Menu form = new Menu();
+        form.show();
     }//GEN-LAST:event_btnMenuActionPerformed
+    
+    public void refreshTable() {
+        DefaultTableModel tableModel = (DefaultTableModel) tableDaftarAcara.getModel();
+        tableModel.setRowCount(0);  // Menghapus baris yang ada
 
+        List<String> dataList = viewListDataAcara();
+        for (String data : dataList) {
+            String[] splitData = data.split("%");
+            tableModel.addRow(splitData);
+        }
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -172,4 +233,23 @@ public class Daftar_Acara extends javax.swing.JFrame {
     private javax.swing.JSpinner spinnerQtty;
     private javax.swing.JTable tableDaftarAcara;
     // End of variables declaration//GEN-END:variables
+
+    private static java.util.List<java.lang.String> viewListDataAcara() {
+        project_client_taliscocaa.ProjectWebservice_Service service = new project_client_taliscocaa.ProjectWebservice_Service();
+        project_client_taliscocaa.ProjectWebservice port = service.getProjectWebservicePort();
+        return port.viewListDataAcara();
+    }
+
+    private static void insertDataReservasiAcara(int jumlahTiket, int userId, int acaraId) {
+        project_client_taliscocaa.ProjectWebservice_Service service = new project_client_taliscocaa.ProjectWebservice_Service();
+        project_client_taliscocaa.ProjectWebservice port = service.getProjectWebservicePort();
+        port.insertDataReservasiAcara(jumlahTiket, userId, acaraId);
+    }
+
+    private static void updateDataAcara(java.lang.String statusAcara, int kapasitas, int acaraId) {
+        project_client_taliscocaa.ProjectWebservice_Service service = new project_client_taliscocaa.ProjectWebservice_Service();
+        project_client_taliscocaa.ProjectWebservice port = service.getProjectWebservicePort();
+        port.updateDataAcara(statusAcara, kapasitas, acaraId);
+    }
+
 }

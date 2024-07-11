@@ -42,6 +42,15 @@ public class project_webservice {
         return u.checkEmail();
     }
     
+    @WebMethod(operationName = "insertDataUser") 
+    public void insertDataUser(@WebParam(name = "username") String username, 
+            @WebParam(name = "password") String password,
+            @WebParam(name = "nama") String nama,
+            @WebParam(name = "email") String email) {
+        u = new User(username, password, nama, email);
+        u.insertData();
+    }
+    
     @WebMethod(operationName = "viewListDataParking")
     public ArrayList<String> viewListDataParking(){
         Parking p = new Parking();
@@ -70,8 +79,9 @@ public class project_webservice {
     }
     
     @WebMethod(operationName = "viewListDataReservasiAcara")
-    public ArrayList<String> viewListDataReservasiAcara() {
+    public ArrayList<String> viewListDataReservasiAcara(@WebParam(name = "user_id") int user_id) {
         ar = new Reservasi_acara();
+        ar.setUser_id(user_id);
         return ar.viewListData();
     }
     

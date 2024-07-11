@@ -12,6 +12,10 @@
 
 <xs:element name="insertDataReservasiAcaraResponse" type="tns:insertDataReservasiAcaraResponse"/>
 
+<xs:element name="insertDataUser" type="tns:insertDataUser"/>
+
+<xs:element name="insertDataUserResponse" type="tns:insertDataUserResponse"/>
+
 <xs:element name="updateDataAcara" type="tns:updateDataAcara"/>
 
 <xs:element name="updateDataAcaraResponse" type="tns:updateDataAcaraResponse"/>
@@ -35,6 +39,19 @@
 <xs:element name="viewListDataReservasiAcara" type="tns:viewListDataReservasiAcara"/>
 
 <xs:element name="viewListDataReservasiAcaraResponse" type="tns:viewListDataReservasiAcaraResponse"/>
+
+<xs:complexType name="insertDataUser">
+<xs:sequence>
+<xs:element name="username" type="xs:string" minOccurs="0"/>
+<xs:element name="password" type="xs:string" minOccurs="0"/>
+<xs:element name="nama" type="xs:string" minOccurs="0"/>
+<xs:element name="email" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="insertDataUserResponse">
+<xs:sequence/>
+</xs:complexType>
 
 <xs:complexType name="insertDataReservasiAcara">
 <xs:sequence>

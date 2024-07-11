@@ -12,6 +12,10 @@
 
 <xs:element name="insertDataReservasiAcaraResponse" type="tns:insertDataReservasiAcaraResponse"/>
 
+<xs:element name="insertDataUser" type="tns:insertDataUser"/>
+
+<xs:element name="insertDataUserResponse" type="tns:insertDataUserResponse"/>
+
 <xs:element name="updateDataAcara" type="tns:updateDataAcara"/>
 
 <xs:element name="updateDataAcaraResponse" type="tns:updateDataAcaraResponse"/>
@@ -36,6 +40,19 @@
 
 <xs:element name="viewListDataReservasiAcaraResponse" type="tns:viewListDataReservasiAcaraResponse"/>
 
+<xs:complexType name="insertDataUser">
+<xs:sequence>
+<xs:element name="username" type="xs:string" minOccurs="0"/>
+<xs:element name="password" type="xs:string" minOccurs="0"/>
+<xs:element name="nama" type="xs:string" minOccurs="0"/>
+<xs:element name="email" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="insertDataUserResponse">
+<xs:sequence/>
+</xs:complexType>
+
 <xs:complexType name="insertDataReservasiAcara">
 <xs:sequence>
 <xs:element name="jumlah_tiket" type="xs:int"/>
@@ -48,6 +65,18 @@
 <xs:sequence/>
 </xs:complexType>
 
+<xs:complexType name="checkEmail">
+<xs:sequence>
+<xs:element name="email" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="checkEmailResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:boolean"/>
+</xs:sequence>
+</xs:complexType>
+
 <xs:complexType name="checkLogin">
 <xs:sequence>
 <xs:element name="username" type="xs:string" minOccurs="0"/>
@@ -58,18 +87,6 @@
 <xs:complexType name="checkLoginResponse">
 <xs:sequence>
 <xs:element name="return" type="xs:string" minOccurs="0"/>
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="checkEmail">
-<xs:sequence>
-<xs:element name="email" type="xs:string" minOccurs="0"/>
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="checkEmailResponse">
-<xs:sequence>
-<xs:element name="return" type="xs:boolean"/>
 </xs:sequence>
 </xs:complexType>
 
@@ -106,7 +123,9 @@
 </xs:complexType>
 
 <xs:complexType name="viewListDataReservasiAcara">
-<xs:sequence/>
+<xs:sequence>
+<xs:element name="user_id" type="xs:int"/>
+</xs:sequence>
 </xs:complexType>
 
 <xs:complexType name="viewListDataReservasiAcaraResponse">

@@ -135,6 +135,7 @@ public class Login extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Login berhasil!");
                 Menu main = new Menu();
                 main.user_id = Integer.parseInt(results[1]);
+                System.out.println(main.user_id);
                 main.show();
 
             } else if(hasil.equals("FALSE")) {

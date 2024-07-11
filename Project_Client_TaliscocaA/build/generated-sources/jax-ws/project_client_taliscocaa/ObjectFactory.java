@@ -30,6 +30,8 @@ public class ObjectFactory {
     private final static QName _CheckLoginResponse_QNAME = new QName("http://services.project_webservice.com/", "checkLoginResponse");
     private final static QName _InsertDataReservasiAcara_QNAME = new QName("http://services.project_webservice.com/", "insertDataReservasiAcara");
     private final static QName _InsertDataReservasiAcaraResponse_QNAME = new QName("http://services.project_webservice.com/", "insertDataReservasiAcaraResponse");
+    private final static QName _InsertDataUser_QNAME = new QName("http://services.project_webservice.com/", "insertDataUser");
+    private final static QName _InsertDataUserResponse_QNAME = new QName("http://services.project_webservice.com/", "insertDataUserResponse");
     private final static QName _UpdateDataAcara_QNAME = new QName("http://services.project_webservice.com/", "updateDataAcara");
     private final static QName _UpdateDataAcaraResponse_QNAME = new QName("http://services.project_webservice.com/", "updateDataAcaraResponse");
     private final static QName _UpdateDataParking_QNAME = new QName("http://services.project_webservice.com/", "updateDataParking");
@@ -96,6 +98,22 @@ public class ObjectFactory {
      */
     public InsertDataReservasiAcaraResponse createInsertDataReservasiAcaraResponse() {
         return new InsertDataReservasiAcaraResponse();
+    }
+
+    /**
+     * Create an instance of {@link InsertDataUser }
+     * 
+     */
+    public InsertDataUser createInsertDataUser() {
+        return new InsertDataUser();
+    }
+
+    /**
+     * Create an instance of {@link InsertDataUserResponse }
+     * 
+     */
+    public InsertDataUserResponse createInsertDataUserResponse() {
+        return new InsertDataUserResponse();
     }
 
     /**
@@ -270,6 +288,32 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://services.project_webservice.com/", name = "insertDataReservasiAcaraResponse")
     public JAXBElement<InsertDataReservasiAcaraResponse> createInsertDataReservasiAcaraResponse(InsertDataReservasiAcaraResponse value) {
         return new JAXBElement<InsertDataReservasiAcaraResponse>(_InsertDataReservasiAcaraResponse_QNAME, InsertDataReservasiAcaraResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link InsertDataUser }{@code >}
+     * 
+     * @param value
+     *     Java instance representing xml element's value.
+     * @return
+     *     the new instance of {@link JAXBElement }{@code <}{@link InsertDataUser }{@code >}
+     */
+    @XmlElementDecl(namespace = "http://services.project_webservice.com/", name = "insertDataUser")
+    public JAXBElement<InsertDataUser> createInsertDataUser(InsertDataUser value) {
+        return new JAXBElement<InsertDataUser>(_InsertDataUser_QNAME, InsertDataUser.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link InsertDataUserResponse }{@code >}
+     * 
+     * @param value
+     *     Java instance representing xml element's value.
+     * @return
+     *     the new instance of {@link JAXBElement }{@code <}{@link InsertDataUserResponse }{@code >}
+     */
+    @XmlElementDecl(namespace = "http://services.project_webservice.com/", name = "insertDataUserResponse")
+    public JAXBElement<InsertDataUserResponse> createInsertDataUserResponse(InsertDataUserResponse value) {
+        return new JAXBElement<InsertDataUserResponse>(_InsertDataUserResponse_QNAME, InsertDataUserResponse.class, null, value);
     }
 
     /**

@@ -4,19 +4,22 @@
  */
 package project_client_taliscocaa;
 
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Jason Nathaniel
  */
 public class Reservasi_Acara extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Reservasi_Acara
-     */
     public Reservasi_Acara() {
         initComponents();
+        refreshTable();
+        
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -27,11 +30,12 @@ public class Reservasi_Acara extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        tableDaftarAcara = new javax.swing.JTable();
+        tableAcara = new javax.swing.JTable();
+        btnClaim = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        tableDaftarAcara.setModel(new javax.swing.table.DefaultTableModel(
+        tableAcara.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null},
                 {null, null, null, null, null, null},
@@ -40,7 +44,7 @@ public class Reservasi_Acara extends javax.swing.JFrame {
                 {null, null, null, null, null, null}
             },
             new String [] {
-                "id", "tanggal_reservasi", "jumlah_tiket", "nama_acara", "user_id", "acara_id"
+                "id", "tanggal_reservasi", "jumlah", "status", "user_id", "acara_id"
             }
         ) {
             Class[] types = new Class [] {
@@ -51,22 +55,35 @@ public class Reservasi_Acara extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(tableDaftarAcara);
+        jScrollPane1.setViewportView(tableAcara);
+
+        btnClaim.setText("Claim");
+        btnClaim.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnClaimActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 851, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(701, Short.MAX_VALUE)
+                .addComponent(btnClaim)
+                .addGap(102, 102, 102))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(35, 35, 35)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 810, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addContainerGap(30, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 505, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(476, Short.MAX_VALUE)
+                .addComponent(btnClaim)
+                .addContainerGap())
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(32, 32, 32)
@@ -77,10 +94,53 @@ public class Reservasi_Acara extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnClaimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClaimActionPerformed
+        int selectedRow = tableAcara.getSelectedRow();
+    
+        if (selectedRow == -1) {
+            JOptionPane.showMessageDialog(this, "Silakan pilih baris yang ingin diklaim.");
+            return;
+        }
+
+        int columnCount = tableAcara.getColumnCount();
+        if (columnCount < 4) {
+            JOptionPane.showMessageDialog(this, "Jumlah kolom di tabel tidak sesuai dengan yang diharapkan.");
+            return;
+        }
+
+        String reservasiAcaraIdStr = tableAcara.getValueAt(selectedRow, 0).toString(); 
+        int reservasiAcaraId = Integer.parseInt(reservasiAcaraIdStr);
+        System.out.println(reservasiAcaraId);
+        String statusAcara = (String) tableAcara.getValueAt(selectedRow, 3);
+
+        if (statusAcara.equals("Not Claimed")) {
+            updateDataReservasiAcara(reservasiAcaraId);
+            JOptionPane.showMessageDialog(this, "Acara berhasil diklaim.");
+            refreshTable();
+        } else {
+            JOptionPane.showMessageDialog(this, "Acara sudah diklaim.");
+        }
+    }//GEN-LAST:event_btnClaimActionPerformed
+    
+    public void refreshTable() {
+        DefaultTableModel tableModel = (DefaultTableModel) tableAcara.getModel();
+        tableModel.setRowCount(0);  
+        Menu form = new Menu();
+        List<String> dataList = viewListDataReservasiAcara(form.user_id);
+        System.out.println("masuk");
+        System.out.println(form.user_id);
+        for (String data : dataList) {
+            String[] splitData = data.split("%");
+            tableModel.addRow(splitData);
+        }
+    }
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
+        
+        Menu form = new Menu();
+        System.out.println(form.user_id);
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -113,7 +173,21 @@ public class Reservasi_Acara extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnClaim;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable tableDaftarAcara;
+    private javax.swing.JTable tableAcara;
     // End of variables declaration//GEN-END:variables
+
+
+    private static void updateDataReservasiAcara(int reservasiId) {
+        project_client_taliscocaa.ProjectWebservice_Service service = new project_client_taliscocaa.ProjectWebservice_Service();
+        project_client_taliscocaa.ProjectWebservice port = service.getProjectWebservicePort();
+        port.updateDataReservasiAcara(reservasiId);
+    }
+
+    private static java.util.List<java.lang.String> viewListDataReservasiAcara(int userId) {
+        project_client_taliscocaa.ProjectWebservice_Service service = new project_client_taliscocaa.ProjectWebservice_Service();
+        project_client_taliscocaa.ProjectWebservice port = service.getProjectWebservicePort();
+        return port.viewListDataReservasiAcara(userId);
+    }
 }

@@ -27,6 +27,45 @@ public interface ProjectWebservice {
 
     /**
      * 
+     * @param password
+     * @param nama
+     * @param email
+     * @param username
+     */
+    @WebMethod
+    @RequestWrapper(localName = "insertDataUser", targetNamespace = "http://services.project_webservice.com/", className = "project_client_taliscocaa.InsertDataUser")
+    @ResponseWrapper(localName = "insertDataUserResponse", targetNamespace = "http://services.project_webservice.com/", className = "project_client_taliscocaa.InsertDataUserResponse")
+    @Action(input = "http://services.project_webservice.com/project_webservice/insertDataUserRequest", output = "http://services.project_webservice.com/project_webservice/insertDataUserResponse")
+    public void insertDataUser(
+        @WebParam(name = "username", targetNamespace = "")
+        String username,
+        @WebParam(name = "password", targetNamespace = "")
+        String password,
+        @WebParam(name = "nama", targetNamespace = "")
+        String nama,
+        @WebParam(name = "email", targetNamespace = "")
+        String email);
+
+    /**
+     * 
+     * @param acaraId
+     * @param kapasitas
+     * @param statusAcara
+     */
+    @WebMethod
+    @RequestWrapper(localName = "updateDataAcara", targetNamespace = "http://services.project_webservice.com/", className = "project_client_taliscocaa.UpdateDataAcara")
+    @ResponseWrapper(localName = "updateDataAcaraResponse", targetNamespace = "http://services.project_webservice.com/", className = "project_client_taliscocaa.UpdateDataAcaraResponse")
+    @Action(input = "http://services.project_webservice.com/project_webservice/updateDataAcaraRequest", output = "http://services.project_webservice.com/project_webservice/updateDataAcaraResponse")
+    public void updateDataAcara(
+        @WebParam(name = "status_acara", targetNamespace = "")
+        String statusAcara,
+        @WebParam(name = "kapasitas", targetNamespace = "")
+        int kapasitas,
+        @WebParam(name = "acara_id", targetNamespace = "")
+        int acaraId);
+
+    /**
+     * 
      * @return
      *     returns java.util.List<java.lang.String>
      */
@@ -39,6 +78,24 @@ public interface ProjectWebservice {
 
     /**
      * 
+     * @param parkingId
+     * @param totalSlotparkir
+     * @param statusParking
+     */
+    @WebMethod
+    @RequestWrapper(localName = "updateDataParking", targetNamespace = "http://services.project_webservice.com/", className = "project_client_taliscocaa.UpdateDataParking")
+    @ResponseWrapper(localName = "updateDataParkingResponse", targetNamespace = "http://services.project_webservice.com/", className = "project_client_taliscocaa.UpdateDataParkingResponse")
+    @Action(input = "http://services.project_webservice.com/project_webservice/updateDataParkingRequest", output = "http://services.project_webservice.com/project_webservice/updateDataParkingResponse")
+    public void updateDataParking(
+        @WebParam(name = "parking_id", targetNamespace = "")
+        int parkingId,
+        @WebParam(name = "total_slotparkir", targetNamespace = "")
+        int totalSlotparkir,
+        @WebParam(name = "status_parking", targetNamespace = "")
+        String statusParking);
+
+    /**
+     * 
      * @return
      *     returns java.util.List<java.lang.String>
      */
@@ -48,6 +105,21 @@ public interface ProjectWebservice {
     @ResponseWrapper(localName = "viewListDataAcaraResponse", targetNamespace = "http://services.project_webservice.com/", className = "project_client_taliscocaa.ViewListDataAcaraResponse")
     @Action(input = "http://services.project_webservice.com/project_webservice/viewListDataAcaraRequest", output = "http://services.project_webservice.com/project_webservice/viewListDataAcaraResponse")
     public List<String> viewListDataAcara();
+
+    /**
+     * 
+     * @param userId
+     * @return
+     *     returns java.util.List<java.lang.String>
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "viewListDataReservasiAcara", targetNamespace = "http://services.project_webservice.com/", className = "project_client_taliscocaa.ViewListDataReservasiAcara")
+    @ResponseWrapper(localName = "viewListDataReservasiAcaraResponse", targetNamespace = "http://services.project_webservice.com/", className = "project_client_taliscocaa.ViewListDataReservasiAcaraResponse")
+    @Action(input = "http://services.project_webservice.com/project_webservice/viewListDataReservasiAcaraRequest", output = "http://services.project_webservice.com/project_webservice/viewListDataReservasiAcaraResponse")
+    public List<String> viewListDataReservasiAcara(
+        @WebParam(name = "user_id", targetNamespace = "")
+        int userId);
 
     /**
      * 
@@ -81,33 +153,18 @@ public interface ProjectWebservice {
 
     /**
      * 
-     * @param parkingId
-     * @param totalSlotparkir
-     * @param statusParking
-     */
-    @WebMethod
-    @RequestWrapper(localName = "updateDataParking", targetNamespace = "http://services.project_webservice.com/", className = "project_client_taliscocaa.UpdateDataParking")
-    @ResponseWrapper(localName = "updateDataParkingResponse", targetNamespace = "http://services.project_webservice.com/", className = "project_client_taliscocaa.UpdateDataParkingResponse")
-    @Action(input = "http://services.project_webservice.com/project_webservice/updateDataParkingRequest", output = "http://services.project_webservice.com/project_webservice/updateDataParkingResponse")
-    public void updateDataParking(
-        @WebParam(name = "parking_id", targetNamespace = "")
-        int parkingId,
-        @WebParam(name = "total_slotparkir", targetNamespace = "")
-        int totalSlotparkir,
-        @WebParam(name = "status_parking", targetNamespace = "")
-        String statusParking);
-
-    /**
-     * 
+     * @param email
      * @return
-     *     returns java.util.List<java.lang.String>
+     *     returns boolean
      */
     @WebMethod
     @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "viewListDataReservasiAcara", targetNamespace = "http://services.project_webservice.com/", className = "project_client_taliscocaa.ViewListDataReservasiAcara")
-    @ResponseWrapper(localName = "viewListDataReservasiAcaraResponse", targetNamespace = "http://services.project_webservice.com/", className = "project_client_taliscocaa.ViewListDataReservasiAcaraResponse")
-    @Action(input = "http://services.project_webservice.com/project_webservice/viewListDataReservasiAcaraRequest", output = "http://services.project_webservice.com/project_webservice/viewListDataReservasiAcaraResponse")
-    public List<String> viewListDataReservasiAcara();
+    @RequestWrapper(localName = "checkEmail", targetNamespace = "http://services.project_webservice.com/", className = "project_client_taliscocaa.CheckEmail")
+    @ResponseWrapper(localName = "checkEmailResponse", targetNamespace = "http://services.project_webservice.com/", className = "project_client_taliscocaa.CheckEmailResponse")
+    @Action(input = "http://services.project_webservice.com/project_webservice/checkEmailRequest", output = "http://services.project_webservice.com/project_webservice/checkEmailResponse")
+    public boolean checkEmail(
+        @WebParam(name = "email", targetNamespace = "")
+        String email);
 
     /**
      * 
@@ -126,38 +183,5 @@ public interface ProjectWebservice {
         String username,
         @WebParam(name = "password", targetNamespace = "")
         String password);
-
-    /**
-     * 
-     * @param acaraId
-     * @param kapasitas
-     * @param statusAcara
-     */
-    @WebMethod
-    @RequestWrapper(localName = "updateDataAcara", targetNamespace = "http://services.project_webservice.com/", className = "project_client_taliscocaa.UpdateDataAcara")
-    @ResponseWrapper(localName = "updateDataAcaraResponse", targetNamespace = "http://services.project_webservice.com/", className = "project_client_taliscocaa.UpdateDataAcaraResponse")
-    @Action(input = "http://services.project_webservice.com/project_webservice/updateDataAcaraRequest", output = "http://services.project_webservice.com/project_webservice/updateDataAcaraResponse")
-    public void updateDataAcara(
-        @WebParam(name = "status_acara", targetNamespace = "")
-        String statusAcara,
-        @WebParam(name = "kapasitas", targetNamespace = "")
-        int kapasitas,
-        @WebParam(name = "acara_id", targetNamespace = "")
-        int acaraId);
-
-    /**
-     * 
-     * @param email
-     * @return
-     *     returns boolean
-     */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "checkEmail", targetNamespace = "http://services.project_webservice.com/", className = "project_client_taliscocaa.CheckEmail")
-    @ResponseWrapper(localName = "checkEmailResponse", targetNamespace = "http://services.project_webservice.com/", className = "project_client_taliscocaa.CheckEmailResponse")
-    @Action(input = "http://services.project_webservice.com/project_webservice/checkEmailRequest", output = "http://services.project_webservice.com/project_webservice/checkEmailResponse")
-    public boolean checkEmail(
-        @WebParam(name = "email", targetNamespace = "")
-        String email);
 
 }

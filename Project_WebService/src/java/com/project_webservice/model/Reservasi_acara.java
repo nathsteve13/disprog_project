@@ -44,7 +44,6 @@ public class Reservasi_acara extends MyModel {
         this.user_id.setUser_id(user_id);
     }
     
-    
     public Reservasi_acara() {
         this.reservasi_id = 0;
         this.tanggal_reservasi = new java.sql.Timestamp(System.currentTimeMillis());
@@ -89,20 +88,20 @@ public class Reservasi_acara extends MyModel {
         this.status_reservasi = status_reservasi;
     }
 
-    public User getUser_id() {
-        return user_id;
+    public int getUser_id() {
+        return user_id.getUser_id();
     }
 
-    public void setUser_id(User user_id) {
-        this.user_id = user_id;
+    public void setUser_id(int user_id) {
+        this.user_id.setUser_id(user_id);
     }
 
-    public Acara getAcara_id() {
-        return acara_id;
+    public int getAcara_id() {
+        return acara_id.getAcara_id();
     }
 
-    public void setAcara_id(Acara acara_id) {
-        this.acara_id = acara_id;
+    public void setAcara_id(int acara_id) {
+        this.acara_id.setAcara_id(acara_id);
     }
 
     @Override
@@ -155,7 +154,7 @@ public class Reservasi_acara extends MyModel {
                 sql.setInt(1, this.user_id.getUser_id());
                 ResultSet result = sql.executeQuery();
                 
-                while (this.result.next()) {
+                while (result.next()) {
                     Reservasi_acara r = new Reservasi_acara(
                             result.getInt("reservasi_id"),
                             result.getTimestamp("tanggal_reservasi"),

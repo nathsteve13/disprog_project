@@ -4,6 +4,12 @@
  */
 package project_client_taliscocaa;
 
+import java.io.BufferedReader;
+import java.io.DataOutputStream;
+import java.io.InputStreamReader;
+import java.net.Socket;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Jason Nathaniel
@@ -34,6 +40,8 @@ public class Register extends javax.swing.JFrame {
         labelEmail = new javax.swing.JLabel();
         txtEmail = new javax.swing.JTextField();
         btnRegister = new javax.swing.JButton();
+        labelUsername1 = new javax.swing.JLabel();
+        txtNama = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -47,6 +55,13 @@ public class Register extends javax.swing.JFrame {
         labelEmail.setText("Email");
 
         btnRegister.setText("Register");
+        btnRegister.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegisterActionPerformed(evt);
+            }
+        });
+
+        labelUsername1.setText("Nama");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -57,19 +72,21 @@ public class Register extends javax.swing.JFrame {
                 .addComponent(labelRegister)
                 .addGap(327, 327, 327))
             .addGroup(layout.createSequentialGroup()
+                .addGap(220, 220, 220)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(labelUsername1)
+                    .addComponent(txtNama, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(labelPassword)
+                        .addComponent(txtPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(220, 220, 220)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(labelEmail)
-                            .addComponent(labelPassword)
-                            .addComponent(labelUsername)
-                            .addComponent(txtUsername)
-                            .addComponent(txtPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
-                            .addComponent(txtEmail)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(367, 367, 367)
-                        .addComponent(btnRegister)))
+                        .addGap(147, 147, 147)
+                        .addComponent(btnRegister))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(labelEmail)
+                        .addComponent(labelUsername)
+                        .addComponent(txtUsername, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
+                        .addComponent(txtEmail)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -85,17 +102,48 @@ public class Register extends javax.swing.JFrame {
                 .addComponent(labelUsername)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(14, 14, 14)
+                .addComponent(labelUsername1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtNama, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(labelPassword)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(29, 29, 29)
                 .addComponent(btnRegister)
-                .addContainerGap(154, Short.MAX_VALUE))
+                .addContainerGap(96, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterActionPerformed
+        try {
+            Socket clientSocket = new Socket("localhost", 3500);
+            DataOutputStream server = new DataOutputStream(clientSocket.getOutputStream());
+
+            server.writeBytes("REGISTER%" + txtEmail.getText() + "%" + txtUsername.getText() + "%" + txtNama.getText() + "%" + txtPassword.getText() + "\n");
+
+            BufferedReader messageFromServer = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+            String hasil = messageFromServer.readLine();
+            System.out.println(hasil);
+
+            if(hasil.startsWith("TRUE")) {
+                String[] results = hasil.split("%");
+                JOptionPane.showMessageDialog(null, "Register berhasil!");
+                Menu main = new Menu();
+                main.user_id = Integer.parseInt(results[1]);
+                main.show();
+
+            } else if(hasil.equals("FALSE")) {
+                JOptionPane.showMessageDialog(null, "Register gagal, email sudah terdaftar!");
+            }
+            clientSocket.close();
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+    }//GEN-LAST:event_btnRegisterActionPerformed
 
     /**
      * @param args the command line arguments
@@ -138,7 +186,9 @@ public class Register extends javax.swing.JFrame {
     private javax.swing.JLabel labelPassword;
     private javax.swing.JLabel labelRegister;
     private javax.swing.JLabel labelUsername;
+    private javax.swing.JLabel labelUsername1;
     private javax.swing.JTextField txtEmail;
+    private javax.swing.JTextField txtNama;
     private javax.swing.JPasswordField txtPassword;
     private javax.swing.JTextField txtUsername;
     // End of variables declaration//GEN-END:variables

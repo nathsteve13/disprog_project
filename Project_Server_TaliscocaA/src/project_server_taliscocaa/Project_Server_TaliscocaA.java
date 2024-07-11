@@ -71,6 +71,7 @@ public class Project_Server_TaliscocaA implements Runnable {
                 } else if (words[0].equals("REGISTER")) {
                     boolean isAvailable = checkEmail(words[1]);
                     if (isAvailable) {
+                        insertDataUser(words[2], words[4], words[3], words[1]);
                         msgToClient.writeBytes("TRUE\n");
                     } else {
                         msgToClient.writeBytes("FALSE\n");
@@ -107,6 +108,12 @@ public class Project_Server_TaliscocaA implements Runnable {
         project_server_taliscocaa.ProjectWebservice_Service service = new project_server_taliscocaa.ProjectWebservice_Service();
         project_server_taliscocaa.ProjectWebservice port = service.getProjectWebservicePort();
         return port.checkLogin(username, password);
+    }
+
+    private static void insertDataUser(java.lang.String username, java.lang.String password, java.lang.String nama, java.lang.String email) {
+        project_server_taliscocaa.ProjectWebservice_Service service = new project_server_taliscocaa.ProjectWebservice_Service();
+        project_server_taliscocaa.ProjectWebservice port = service.getProjectWebservicePort();
+        port.insertDataUser(username, password, nama, email);
     }
     
 }

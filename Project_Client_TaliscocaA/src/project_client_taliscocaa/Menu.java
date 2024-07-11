@@ -16,7 +16,7 @@ public class Menu extends javax.swing.JFrame {
     public Menu() {
         initComponents();
     }
-    public int user_id;
+    public static int user_id;
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -40,6 +40,11 @@ public class Menu extends javax.swing.JFrame {
         menuReservasi.setText("Reservasi");
 
         menuItemDaftarParkir.setText("Daftar Parkir");
+        menuItemDaftarParkir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemDaftarParkirActionPerformed(evt);
+            }
+        });
         menuReservasi.add(menuItemDaftarParkir);
 
         menuItemDaftarAcara.setText("Daftar Acara");
@@ -92,17 +97,23 @@ public class Menu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void menuItemDaftarAcaraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemDaftarAcaraActionPerformed
-        
+        Daftar_Acara form = new Daftar_Acara();
+        form.show();
     }//GEN-LAST:event_menuItemDaftarAcaraActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        // TODO add your handling code here:
+        Reservasi_Acara form = new Reservasi_Acara();
+        form.show();
 
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void menuItemDaftarParkirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemDaftarParkirActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_menuItemDaftarParkirActionPerformed
 
     /**
      * @param args the command line arguments
