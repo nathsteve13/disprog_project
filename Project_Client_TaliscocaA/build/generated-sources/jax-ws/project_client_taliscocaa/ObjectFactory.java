@@ -30,6 +30,8 @@ public class ObjectFactory {
     private final static QName _CheckLoginResponse_QNAME = new QName("http://services.project_webservice.com/", "checkLoginResponse");
     private final static QName _InsertDataReservasiAcara_QNAME = new QName("http://services.project_webservice.com/", "insertDataReservasiAcara");
     private final static QName _InsertDataReservasiAcaraResponse_QNAME = new QName("http://services.project_webservice.com/", "insertDataReservasiAcaraResponse");
+    private final static QName _InsertDataReservasiParking_QNAME = new QName("http://services.project_webservice.com/", "insertDataReservasiParking");
+    private final static QName _InsertDataReservasiParkingResponse_QNAME = new QName("http://services.project_webservice.com/", "insertDataReservasiParkingResponse");
     private final static QName _InsertDataUser_QNAME = new QName("http://services.project_webservice.com/", "insertDataUser");
     private final static QName _InsertDataUserResponse_QNAME = new QName("http://services.project_webservice.com/", "insertDataUserResponse");
     private final static QName _UpdateDataAcara_QNAME = new QName("http://services.project_webservice.com/", "updateDataAcara");
@@ -38,12 +40,16 @@ public class ObjectFactory {
     private final static QName _UpdateDataParkingResponse_QNAME = new QName("http://services.project_webservice.com/", "updateDataParkingResponse");
     private final static QName _UpdateDataReservasiAcara_QNAME = new QName("http://services.project_webservice.com/", "updateDataReservasiAcara");
     private final static QName _UpdateDataReservasiAcaraResponse_QNAME = new QName("http://services.project_webservice.com/", "updateDataReservasiAcaraResponse");
+    private final static QName _UpdateDataReservasiParking_QNAME = new QName("http://services.project_webservice.com/", "updateDataReservasiParking");
+    private final static QName _UpdateDataReservasiParkingResponse_QNAME = new QName("http://services.project_webservice.com/", "updateDataReservasiParkingResponse");
     private final static QName _ViewListDataAcara_QNAME = new QName("http://services.project_webservice.com/", "viewListDataAcara");
     private final static QName _ViewListDataAcaraResponse_QNAME = new QName("http://services.project_webservice.com/", "viewListDataAcaraResponse");
     private final static QName _ViewListDataParking_QNAME = new QName("http://services.project_webservice.com/", "viewListDataParking");
     private final static QName _ViewListDataParkingResponse_QNAME = new QName("http://services.project_webservice.com/", "viewListDataParkingResponse");
     private final static QName _ViewListDataReservasiAcara_QNAME = new QName("http://services.project_webservice.com/", "viewListDataReservasiAcara");
     private final static QName _ViewListDataReservasiAcaraResponse_QNAME = new QName("http://services.project_webservice.com/", "viewListDataReservasiAcaraResponse");
+    private final static QName _ViewListDataReservasiParking_QNAME = new QName("http://services.project_webservice.com/", "viewListDataReservasiParking");
+    private final static QName _ViewListDataReservasiParkingResponse_QNAME = new QName("http://services.project_webservice.com/", "viewListDataReservasiParkingResponse");
 
     /**
      * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: project_client_taliscocaa
@@ -98,6 +104,22 @@ public class ObjectFactory {
      */
     public InsertDataReservasiAcaraResponse createInsertDataReservasiAcaraResponse() {
         return new InsertDataReservasiAcaraResponse();
+    }
+
+    /**
+     * Create an instance of {@link InsertDataReservasiParking }
+     * 
+     */
+    public InsertDataReservasiParking createInsertDataReservasiParking() {
+        return new InsertDataReservasiParking();
+    }
+
+    /**
+     * Create an instance of {@link InsertDataReservasiParkingResponse }
+     * 
+     */
+    public InsertDataReservasiParkingResponse createInsertDataReservasiParkingResponse() {
+        return new InsertDataReservasiParkingResponse();
     }
 
     /**
@@ -165,6 +187,22 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link UpdateDataReservasiParking }
+     * 
+     */
+    public UpdateDataReservasiParking createUpdateDataReservasiParking() {
+        return new UpdateDataReservasiParking();
+    }
+
+    /**
+     * Create an instance of {@link UpdateDataReservasiParkingResponse }
+     * 
+     */
+    public UpdateDataReservasiParkingResponse createUpdateDataReservasiParkingResponse() {
+        return new UpdateDataReservasiParkingResponse();
+    }
+
+    /**
      * Create an instance of {@link ViewListDataAcara }
      * 
      */
@@ -210,6 +248,22 @@ public class ObjectFactory {
      */
     public ViewListDataReservasiAcaraResponse createViewListDataReservasiAcaraResponse() {
         return new ViewListDataReservasiAcaraResponse();
+    }
+
+    /**
+     * Create an instance of {@link ViewListDataReservasiParking }
+     * 
+     */
+    public ViewListDataReservasiParking createViewListDataReservasiParking() {
+        return new ViewListDataReservasiParking();
+    }
+
+    /**
+     * Create an instance of {@link ViewListDataReservasiParkingResponse }
+     * 
+     */
+    public ViewListDataReservasiParkingResponse createViewListDataReservasiParkingResponse() {
+        return new ViewListDataReservasiParkingResponse();
     }
 
     /**
@@ -288,6 +342,32 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://services.project_webservice.com/", name = "insertDataReservasiAcaraResponse")
     public JAXBElement<InsertDataReservasiAcaraResponse> createInsertDataReservasiAcaraResponse(InsertDataReservasiAcaraResponse value) {
         return new JAXBElement<InsertDataReservasiAcaraResponse>(_InsertDataReservasiAcaraResponse_QNAME, InsertDataReservasiAcaraResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link InsertDataReservasiParking }{@code >}
+     * 
+     * @param value
+     *     Java instance representing xml element's value.
+     * @return
+     *     the new instance of {@link JAXBElement }{@code <}{@link InsertDataReservasiParking }{@code >}
+     */
+    @XmlElementDecl(namespace = "http://services.project_webservice.com/", name = "insertDataReservasiParking")
+    public JAXBElement<InsertDataReservasiParking> createInsertDataReservasiParking(InsertDataReservasiParking value) {
+        return new JAXBElement<InsertDataReservasiParking>(_InsertDataReservasiParking_QNAME, InsertDataReservasiParking.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link InsertDataReservasiParkingResponse }{@code >}
+     * 
+     * @param value
+     *     Java instance representing xml element's value.
+     * @return
+     *     the new instance of {@link JAXBElement }{@code <}{@link InsertDataReservasiParkingResponse }{@code >}
+     */
+    @XmlElementDecl(namespace = "http://services.project_webservice.com/", name = "insertDataReservasiParkingResponse")
+    public JAXBElement<InsertDataReservasiParkingResponse> createInsertDataReservasiParkingResponse(InsertDataReservasiParkingResponse value) {
+        return new JAXBElement<InsertDataReservasiParkingResponse>(_InsertDataReservasiParkingResponse_QNAME, InsertDataReservasiParkingResponse.class, null, value);
     }
 
     /**
@@ -395,6 +475,32 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link UpdateDataReservasiParking }{@code >}
+     * 
+     * @param value
+     *     Java instance representing xml element's value.
+     * @return
+     *     the new instance of {@link JAXBElement }{@code <}{@link UpdateDataReservasiParking }{@code >}
+     */
+    @XmlElementDecl(namespace = "http://services.project_webservice.com/", name = "updateDataReservasiParking")
+    public JAXBElement<UpdateDataReservasiParking> createUpdateDataReservasiParking(UpdateDataReservasiParking value) {
+        return new JAXBElement<UpdateDataReservasiParking>(_UpdateDataReservasiParking_QNAME, UpdateDataReservasiParking.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link UpdateDataReservasiParkingResponse }{@code >}
+     * 
+     * @param value
+     *     Java instance representing xml element's value.
+     * @return
+     *     the new instance of {@link JAXBElement }{@code <}{@link UpdateDataReservasiParkingResponse }{@code >}
+     */
+    @XmlElementDecl(namespace = "http://services.project_webservice.com/", name = "updateDataReservasiParkingResponse")
+    public JAXBElement<UpdateDataReservasiParkingResponse> createUpdateDataReservasiParkingResponse(UpdateDataReservasiParkingResponse value) {
+        return new JAXBElement<UpdateDataReservasiParkingResponse>(_UpdateDataReservasiParkingResponse_QNAME, UpdateDataReservasiParkingResponse.class, null, value);
+    }
+
+    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link ViewListDataAcara }{@code >}
      * 
      * @param value
@@ -470,6 +576,32 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://services.project_webservice.com/", name = "viewListDataReservasiAcaraResponse")
     public JAXBElement<ViewListDataReservasiAcaraResponse> createViewListDataReservasiAcaraResponse(ViewListDataReservasiAcaraResponse value) {
         return new JAXBElement<ViewListDataReservasiAcaraResponse>(_ViewListDataReservasiAcaraResponse_QNAME, ViewListDataReservasiAcaraResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link ViewListDataReservasiParking }{@code >}
+     * 
+     * @param value
+     *     Java instance representing xml element's value.
+     * @return
+     *     the new instance of {@link JAXBElement }{@code <}{@link ViewListDataReservasiParking }{@code >}
+     */
+    @XmlElementDecl(namespace = "http://services.project_webservice.com/", name = "viewListDataReservasiParking")
+    public JAXBElement<ViewListDataReservasiParking> createViewListDataReservasiParking(ViewListDataReservasiParking value) {
+        return new JAXBElement<ViewListDataReservasiParking>(_ViewListDataReservasiParking_QNAME, ViewListDataReservasiParking.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link ViewListDataReservasiParkingResponse }{@code >}
+     * 
+     * @param value
+     *     Java instance representing xml element's value.
+     * @return
+     *     the new instance of {@link JAXBElement }{@code <}{@link ViewListDataReservasiParkingResponse }{@code >}
+     */
+    @XmlElementDecl(namespace = "http://services.project_webservice.com/", name = "viewListDataReservasiParkingResponse")
+    public JAXBElement<ViewListDataReservasiParkingResponse> createViewListDataReservasiParkingResponse(ViewListDataReservasiParkingResponse value) {
+        return new JAXBElement<ViewListDataReservasiParkingResponse>(_ViewListDataReservasiParkingResponse_QNAME, ViewListDataReservasiParkingResponse.class, null, value);
     }
 
 }

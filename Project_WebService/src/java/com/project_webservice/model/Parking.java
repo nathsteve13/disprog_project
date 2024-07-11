@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author natha
+ * @author Jason Nathaniel
  */
 public class Parking extends MyModel{
     private int parking_id;

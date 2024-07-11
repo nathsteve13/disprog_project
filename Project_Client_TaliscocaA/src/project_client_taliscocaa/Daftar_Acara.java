@@ -36,19 +36,32 @@ public class Daftar_Acara extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         spinnerQtty = new javax.swing.JSpinner();
         btnMenu = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(null);
 
         labelDaftarAcara.setFont(new java.awt.Font("Serif", 1, 36)); // NOI18N
+        labelDaftarAcara.setForeground(new java.awt.Color(255, 255, 255));
         labelDaftarAcara.setText("DAFTAR ACARA");
+        getContentPane().add(labelDaftarAcara);
+        labelDaftarAcara.setBounds(300, 10, 300, 47);
 
+        btnReservasi.setBackground(new java.awt.Color(204, 204, 204));
+        btnReservasi.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btnReservasi.setForeground(new java.awt.Color(51, 51, 51));
         btnReservasi.setText("Reservasi");
         btnReservasi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnReservasiActionPerformed(evt);
             }
         });
+        getContentPane().add(btnReservasi);
+        btnReservasi.setBounds(740, 400, 120, 32);
 
+        jScrollPane1.setBackground(new java.awt.Color(204, 204, 204));
+
+        tableDaftarAcara.setBackground(new java.awt.Color(204, 204, 204));
         tableDaftarAcara.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null},
@@ -71,56 +84,34 @@ public class Daftar_Acara extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tableDaftarAcara);
 
+        getContentPane().add(jScrollPane1);
+        jScrollPane1.setBounds(60, 70, 760, 310);
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("quantity");
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(60, 390, 80, 25);
 
         spinnerQtty.setModel(new javax.swing.SpinnerNumberModel(1, 1, 5, 1));
+        getContentPane().add(spinnerQtty);
+        spinnerQtty.setBounds(140, 390, 79, 22);
 
-        btnMenu.setText("menu");
+        btnMenu.setBackground(new java.awt.Color(204, 204, 204));
+        btnMenu.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btnMenu.setForeground(new java.awt.Color(51, 51, 51));
+        btnMenu.setText("BACK TO MENU");
         btnMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnMenuActionPerformed(evt);
             }
         });
+        getContentPane().add(btnMenu);
+        btnMenu.setBounds(680, 440, 180, 30);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(labelDaftarAcara)
-                .addGap(273, 273, 273))
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap(14, Short.MAX_VALUE)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 810, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(33, 33, 33)
-                        .addComponent(jLabel1)
-                        .addGap(18, 18, 18)
-                        .addComponent(spinnerQtty, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnMenu)
-                        .addGap(239, 239, 239)
-                        .addComponent(btnReservasi)))
-                .addContainerGap(14, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(labelDaftarAcara)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnReservasi)
-                    .addComponent(jLabel1)
-                    .addComponent(spinnerQtty, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(21, 21, 21))
-        );
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/background/ACARA.png"))); // NOI18N
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(0, 0, 900, 500);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -228,6 +219,7 @@ public class Daftar_Acara extends javax.swing.JFrame {
     private javax.swing.JButton btnMenu;
     private javax.swing.JButton btnReservasi;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel labelDaftarAcara;
     private javax.swing.JSpinner spinnerQtty;

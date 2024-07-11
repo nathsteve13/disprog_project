@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author natha
+ * @author Jason Nathaniel
  */
 public abstract class MyModel {
     protected static Connection conn;

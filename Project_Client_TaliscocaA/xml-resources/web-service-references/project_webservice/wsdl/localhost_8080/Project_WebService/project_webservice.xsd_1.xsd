@@ -12,6 +12,10 @@
 
 <xs:element name="insertDataReservasiAcaraResponse" type="tns:insertDataReservasiAcaraResponse"/>
 
+<xs:element name="insertDataReservasiParking" type="tns:insertDataReservasiParking"/>
+
+<xs:element name="insertDataReservasiParkingResponse" type="tns:insertDataReservasiParkingResponse"/>
+
 <xs:element name="insertDataUser" type="tns:insertDataUser"/>
 
 <xs:element name="insertDataUserResponse" type="tns:insertDataUserResponse"/>
@@ -28,6 +32,10 @@
 
 <xs:element name="updateDataReservasiAcaraResponse" type="tns:updateDataReservasiAcaraResponse"/>
 
+<xs:element name="updateDataReservasiParking" type="tns:updateDataReservasiParking"/>
+
+<xs:element name="updateDataReservasiParkingResponse" type="tns:updateDataReservasiParkingResponse"/>
+
 <xs:element name="viewListDataAcara" type="tns:viewListDataAcara"/>
 
 <xs:element name="viewListDataAcaraResponse" type="tns:viewListDataAcaraResponse"/>
@@ -39,6 +47,10 @@
 <xs:element name="viewListDataReservasiAcara" type="tns:viewListDataReservasiAcara"/>
 
 <xs:element name="viewListDataReservasiAcaraResponse" type="tns:viewListDataReservasiAcaraResponse"/>
+
+<xs:element name="viewListDataReservasiParking" type="tns:viewListDataReservasiParking"/>
+
+<xs:element name="viewListDataReservasiParkingResponse" type="tns:viewListDataReservasiParkingResponse"/>
 
 <xs:complexType name="insertDataUser">
 <xs:sequence>
@@ -53,6 +65,16 @@
 <xs:sequence/>
 </xs:complexType>
 
+<xs:complexType name="updateDataReservasiParking">
+<xs:sequence>
+<xs:element name="reservasi_id" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="updateDataReservasiParkingResponse">
+<xs:sequence/>
+</xs:complexType>
+
 <xs:complexType name="insertDataReservasiAcara">
 <xs:sequence>
 <xs:element name="jumlah_tiket" type="xs:int"/>
@@ -63,18 +85,6 @@
 
 <xs:complexType name="insertDataReservasiAcaraResponse">
 <xs:sequence/>
-</xs:complexType>
-
-<xs:complexType name="checkEmail">
-<xs:sequence>
-<xs:element name="email" type="xs:string" minOccurs="0"/>
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="checkEmailResponse">
-<xs:sequence>
-<xs:element name="return" type="xs:boolean"/>
-</xs:sequence>
 </xs:complexType>
 
 <xs:complexType name="checkLogin">
@@ -110,15 +120,15 @@
 </xs:sequence>
 </xs:complexType>
 
-<xs:complexType name="updateDataAcara">
+<xs:complexType name="insertDataReservasiParking">
 <xs:sequence>
-<xs:element name="status_acara" type="xs:string" minOccurs="0"/>
-<xs:element name="kapasitas" type="xs:int"/>
-<xs:element name="acara_id" type="xs:int"/>
+<xs:element name="user_id" type="xs:int"/>
+<xs:element name="parking_id" type="xs:int"/>
+<xs:element name="tanggal_parkir" type="xs:string" minOccurs="0"/>
 </xs:sequence>
 </xs:complexType>
 
-<xs:complexType name="updateDataAcaraResponse">
+<xs:complexType name="insertDataReservasiParkingResponse">
 <xs:sequence/>
 </xs:complexType>
 
@@ -154,5 +164,41 @@
 
 <xs:complexType name="updateDataReservasiAcaraResponse">
 <xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="checkEmail">
+<xs:sequence>
+<xs:element name="email" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="checkEmailResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:boolean"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="updateDataAcara">
+<xs:sequence>
+<xs:element name="status_acara" type="xs:string" minOccurs="0"/>
+<xs:element name="kapasitas" type="xs:int"/>
+<xs:element name="acara_id" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="updateDataAcaraResponse">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="viewListDataReservasiParking">
+<xs:sequence>
+<xs:element name="user_id" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="viewListDataReservasiParkingResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
 </xs:complexType>
 </xs:schema>

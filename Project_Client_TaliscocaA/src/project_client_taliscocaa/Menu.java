@@ -26,6 +26,9 @@ public class Menu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel1 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         menuReservasi = new javax.swing.JMenu();
         menuItemDaftarParkir = new javax.swing.JMenuItem();
@@ -36,6 +39,26 @@ public class Menu extends javax.swing.JFrame {
         jMenuItem2 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(900, 500));
+        getContentPane().setLayout(null);
+
+        jLabel1.setFont(new java.awt.Font("Serif", 1, 36)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel1.setText("TICKET TIME");
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(590, 200, 257, 47);
+
+        jLabel3.setFont(new java.awt.Font("Serif", 1, 36)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel3.setText("WELCOME TO");
+        getContentPane().add(jLabel3);
+        jLabel3.setBounds(500, 160, 257, 47);
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/background/MENU (3).png"))); // NOI18N
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(0, 0, 900, 500);
+
+        jMenuBar1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
 
         menuReservasi.setText("Reservasi");
 
@@ -60,7 +83,7 @@ public class Menu extends javax.swing.JFrame {
         menuExit.setText("Exit");
         jMenuBar1.add(menuExit);
 
-        jMenu1.setText("reserve");
+        jMenu1.setText("Reserve");
 
         jMenuItem1.setText("reserve acara");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
@@ -82,17 +105,6 @@ public class Menu extends javax.swing.JFrame {
 
         setJMenuBar(jMenuBar1);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 804, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 470, Short.MAX_VALUE)
-        );
-
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -108,11 +120,14 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-        // TODO add your handling code here:
+        Reservasi_Parking form = new Reservasi_Parking();
+        form.show();
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void menuItemDaftarParkirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemDaftarParkirActionPerformed
         // TODO add your handling code here:
+        Daftar_Parking form = new Daftar_Parking();
+        form.show();
     }//GEN-LAST:event_menuItemDaftarParkirActionPerformed
 
     /**
@@ -151,6 +166,9 @@ public class Menu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;

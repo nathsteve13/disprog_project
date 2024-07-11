@@ -4,17 +4,19 @@
  */
 package project_client_taliscocaa;
 
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Jason Nathaniel
  */
 public class Daftar_Parking extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Daftar_Parking
-     */
     public Daftar_Parking() {
         initComponents();
+        refreshTable();
     }
 
     /**
@@ -30,26 +32,34 @@ public class Daftar_Parking extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tableDaftarParkir = new javax.swing.JTable();
         btnReservasi = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(null);
 
         labelDaftarParkir.setFont(new java.awt.Font("Serif", 1, 36)); // NOI18N
+        labelDaftarParkir.setForeground(new java.awt.Color(255, 255, 255));
         labelDaftarParkir.setText("DAFTAR PARKIR");
+        getContentPane().add(labelDaftarParkir);
+        labelDaftarParkir.setBounds(280, 0, 310, 47);
 
+        tableDaftarParkir.setBackground(new java.awt.Color(204, 204, 204));
+        tableDaftarParkir.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         tableDaftarParkir.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "nama_parking", "total_slot", "status_parking", "tanggal_parkir"
+                "id", "nama_parking", "total_slot", "status_parking", "tanggal_parkir"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -58,47 +68,87 @@ public class Daftar_Parking extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tableDaftarParkir);
 
+        getContentPane().add(jScrollPane1);
+        jScrollPane1.setBounds(70, 70, 740, 300);
+
+        btnReservasi.setBackground(new java.awt.Color(204, 204, 204));
+        btnReservasi.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btnReservasi.setForeground(new java.awt.Color(51, 51, 51));
         btnReservasi.setText("Reservasi");
         btnReservasi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnReservasiActionPerformed(evt);
             }
         });
+        getContentPane().add(btnReservasi);
+        btnReservasi.setBounds(740, 390, 110, 40);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(0, 2, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnReservasi)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 815, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(7, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(275, 275, 275)
-                .addComponent(labelDaftarParkir)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(labelDaftarParkir)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnReservasi)
-                .addGap(21, 21, 21))
-        );
+        jButton1.setBackground(new java.awt.Color(204, 204, 204));
+        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(51, 51, 51));
+        jButton1.setText("BACK TO MENU");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton1);
+        jButton1.setBounds(680, 440, 170, 32);
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/background/parkir.png"))); // NOI18N
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(0, 0, 900, 500);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnReservasiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReservasiActionPerformed
+        int selectedRow = tableDaftarParkir.getSelectedRow();
+        Menu form = new Menu();
+        int user_id = form.user_id;
         
+        if (selectedRow == -1) {
+            JOptionPane.showMessageDialog(this, "Pilih parking yang ingin diklaim terlebih dahulu.");
+            return;
+        }
+        String parkingIdStr = tableDaftarParkir.getValueAt(selectedRow, 0).toString(); 
+        int parkingId = Integer.parseInt(parkingIdStr);
+        
+        String slotStr = tableDaftarParkir.getValueAt(selectedRow, 2).toString(); 
+        int slot = Integer.parseInt(slotStr);
+        
+        String statusParking = (String) tableDaftarParkir.getValueAt(selectedRow, 3);
+        String tanggal_parkir = (String) tableDaftarParkir.getValueAt(selectedRow, 4);
+        
+        if (!statusParking.equals("Available") ) {
+            if(slot < 1) {
+                JOptionPane.showMessageDialog(this, "Acara tidak bisa diklaim. Status Parking: " + statusParking);
+                return;
+            }
+        } else {
+            insertDataReservasiParking(user_id, parkingId, tanggal_parkir);
+            updateDataParking(parkingId, slot-1, "Not Available");
+            JOptionPane.showMessageDialog(this, "Berhasil dibooking!");
+            refreshTable();
+        }
     }//GEN-LAST:event_btnReservasiActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        Menu form = new Menu();
+        form.show();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    public void refreshTable() {
+        DefaultTableModel tableModel = (DefaultTableModel) tableDaftarParkir.getModel();
+        tableModel.setRowCount(0); 
+
+        List<String> dataList = viewListDataParking();
+        for (String data : dataList) {
+            String[] splitData = data.split("%");
+            tableModel.addRow(splitData);
+        }
+    }
     /**
      * @param args the command line arguments
      */
@@ -136,8 +186,37 @@ public class Daftar_Parking extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnReservasi;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel labelDaftarParkir;
     private javax.swing.JTable tableDaftarParkir;
     // End of variables declaration//GEN-END:variables
+
+    private static java.util.List<java.lang.String> viewListDataParking() {
+        project_client_taliscocaa.ProjectWebservice_Service service = new project_client_taliscocaa.ProjectWebservice_Service();
+        project_client_taliscocaa.ProjectWebservice port = service.getProjectWebservicePort();
+        return port.viewListDataParking();
+    }
+
+    private static void insertDataReservasiParking(int userId, int parkingId, java.lang.String tanggalParkir) {
+        project_client_taliscocaa.ProjectWebservice_Service service = new project_client_taliscocaa.ProjectWebservice_Service();
+        project_client_taliscocaa.ProjectWebservice port = service.getProjectWebservicePort();
+        port.insertDataReservasiParking(userId, parkingId, tanggalParkir);
+    }
+
+    private static void updateDataReservasiParking(int reservasiId) {
+        project_client_taliscocaa.ProjectWebservice_Service service = new project_client_taliscocaa.ProjectWebservice_Service();
+        project_client_taliscocaa.ProjectWebservice port = service.getProjectWebservicePort();
+        port.updateDataReservasiParking(reservasiId);
+    }
+
+    private static void updateDataParking(int parkingId, int totalSlotparkir, java.lang.String statusParking) {
+        project_client_taliscocaa.ProjectWebservice_Service service = new project_client_taliscocaa.ProjectWebservice_Service();
+        project_client_taliscocaa.ProjectWebservice port = service.getProjectWebservicePort();
+        port.updateDataParking(parkingId, totalSlotparkir, statusParking);
+    }
+
+
+
 }

@@ -41,80 +41,66 @@ public class Login extends javax.swing.JFrame {
         btnLogin = new javax.swing.JButton();
         labelBelumPunyaAkun = new javax.swing.JLabel();
         btnRegister = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(900, 500));
+        getContentPane().setLayout(null);
 
         labelLogin.setFont(new java.awt.Font("Serif", 1, 36)); // NOI18N
+        labelLogin.setForeground(new java.awt.Color(51, 51, 51));
         labelLogin.setText("LOGIN");
+        getContentPane().add(labelLogin);
+        labelLogin.setBounds(220, 40, 121, 47);
 
+        labelUsername.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        labelUsername.setForeground(new java.awt.Color(0, 0, 0));
         labelUsername.setText("Username");
+        getContentPane().add(labelUsername);
+        labelUsername.setBounds(80, 120, 80, 20);
+        getContentPane().add(txtUsername);
+        txtUsername.setBounds(80, 140, 400, 22);
 
+        labelPassword.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        labelPassword.setForeground(new java.awt.Color(0, 0, 0));
         labelPassword.setText("Password");
+        getContentPane().add(labelPassword);
+        labelPassword.setBounds(80, 180, 70, 20);
+        getContentPane().add(txtPassword);
+        txtPassword.setBounds(80, 210, 400, 22);
 
+        btnLogin.setBackground(new java.awt.Color(204, 204, 204));
+        btnLogin.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnLogin.setForeground(new java.awt.Color(51, 51, 51));
         btnLogin.setText("LOGIN");
         btnLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLoginActionPerformed(evt);
             }
         });
+        getContentPane().add(btnLogin);
+        btnLogin.setBounds(240, 270, 72, 23);
 
-        labelBelumPunyaAkun.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
+        labelBelumPunyaAkun.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
+        labelBelumPunyaAkun.setForeground(new java.awt.Color(102, 102, 102));
         labelBelumPunyaAkun.setText("Belum punya akun?");
+        getContentPane().add(labelBelumPunyaAkun);
+        labelBelumPunyaAkun.setBounds(170, 320, 155, 25);
 
+        btnRegister.setBackground(new java.awt.Color(204, 204, 204));
+        btnRegister.setForeground(new java.awt.Color(51, 51, 51));
         btnRegister.setText("Register");
         btnRegister.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnRegisterActionPerformed(evt);
             }
         });
+        getContentPane().add(btnRegister);
+        btnRegister.setBounds(300, 320, 80, 23);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(367, 367, 367)
-                        .addComponent(btnLogin))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(363, 363, 363)
-                        .addComponent(labelLogin))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(217, 217, 217)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(labelPassword)
-                                .addComponent(labelUsername)
-                                .addComponent(txtUsername)
-                                .addComponent(txtPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(labelBelumPunyaAkun)
-                                .addGap(18, 18, 18)
-                                .addComponent(btnRegister)))))
-                .addContainerGap(200, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(42, 42, 42)
-                .addComponent(labelLogin)
-                .addGap(18, 18, 18)
-                .addComponent(labelUsername)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(labelPassword)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27)
-                .addComponent(btnLogin)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 144, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelBelumPunyaAkun)
-                    .addComponent(btnRegister))
-                .addGap(61, 61, 61))
-        );
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/background/REGISTER (1).png"))); // NOI18N
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(0, 0, 900, 500);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -190,6 +176,7 @@ public class Login extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLogin;
     private javax.swing.JButton btnRegister;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel labelBelumPunyaAkun;
     private javax.swing.JLabel labelLogin;
     private javax.swing.JLabel labelPassword;

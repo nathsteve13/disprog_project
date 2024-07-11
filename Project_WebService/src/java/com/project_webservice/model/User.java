@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author natha
+ * @author Jason Nathaniel
  */
 public class User extends MyModel{
 

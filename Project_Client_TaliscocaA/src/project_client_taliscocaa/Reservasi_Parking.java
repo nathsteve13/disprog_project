@@ -4,17 +4,19 @@
  */
 package project_client_taliscocaa;
 
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Jason Nathaniel
  */
 public class Reservasi_Parking extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Reservasi_Parking
-     */
     public Reservasi_Parking() {
         initComponents();
+        refreshTable();
     }
 
     /**
@@ -26,25 +28,125 @@ public class Reservasi_Parking extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tableParking = new javax.swing.JTable();
+        btnClaim = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        btnClaim2 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(null);
+
+        jScrollPane1.setBackground(new java.awt.Color(204, 204, 204));
+        jScrollPane1.setForeground(new java.awt.Color(204, 204, 204));
+
+        tableParking.setBackground(new java.awt.Color(204, 204, 204));
+        tableParking.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
+            },
+            new String [] {
+                "id", "tanggal_parkir", "slot_parkir", "status", "parking_id", "user_id"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(tableParking);
+
+        getContentPane().add(jScrollPane1);
+        jScrollPane1.setBounds(70, 70, 740, 340);
+
+        btnClaim.setBackground(new java.awt.Color(204, 204, 204));
+        btnClaim.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btnClaim.setForeground(new java.awt.Color(51, 51, 51));
+        btnClaim.setText("Claim");
+        btnClaim.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnClaimActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnClaim);
+        btnClaim.setBounds(740, 440, 120, 30);
+
+        jLabel2.setFont(new java.awt.Font("Serif", 1, 36)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("RESERVASI PARKIR");
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(260, 0, 370, 50);
+
+        btnClaim2.setBackground(new java.awt.Color(204, 204, 204));
+        btnClaim2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btnClaim2.setForeground(new java.awt.Color(51, 51, 51));
+        btnClaim2.setText("Exit");
+        btnClaim2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnClaim2ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnClaim2);
+        btnClaim2.setBounds(70, 450, 100, 32);
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/background/parkir.png"))); // NOI18N
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(0, 0, 900, 500);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+    
+    private void btnClaimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClaimActionPerformed
+        int selectedRow = tableParking.getSelectedRow();
+
+        if (selectedRow == -1) {
+            JOptionPane.showMessageDialog(this, "Silakan pilih baris yang ingin diklaim.");
+            return;
+        }
+
+        String id_reserveStr = tableParking.getValueAt(selectedRow, 0).toString();
+        int id_reserve = Integer.parseInt(id_reserveStr);
+        
+        String statusAcara = (String) tableParking.getValueAt(selectedRow, 3);
+
+        if (statusAcara.equals("Not Claimed")) {
+            updateDataReservasiParking(id_reserve);
+            JOptionPane.showMessageDialog(this, "Parking berhasil diklaim.");
+            refreshTable();
+        } else {
+            JOptionPane.showMessageDialog(this, "Parking sudah diklaim.");
+        }
+    }//GEN-LAST:event_btnClaimActionPerformed
+
+    private void btnClaim2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClaim2ActionPerformed
+        // TODO add your handling code here:
+        thankyou thanks = new thankyou();
+        thanks.show();
+    }//GEN-LAST:event_btnClaim2ActionPerformed
 
     /**
      * @param args the command line arguments
      */
+    public void refreshTable() {
+        DefaultTableModel tableModel = (DefaultTableModel) tableParking.getModel();
+        tableModel.setRowCount(0);  
+        Menu form = new Menu();
+        List<String> dataList = viewListDataReservasiParking(form.user_id);
+        System.out.println("masuk");
+        System.out.println(form.user_id);
+        for (String data : dataList) {
+            String[] splitData = data.split("%");
+            tableModel.addRow(splitData);
+        }
+    }
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -78,5 +180,23 @@ public class Reservasi_Parking extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnClaim;
+    private javax.swing.JButton btnClaim2;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable tableParking;
     // End of variables declaration//GEN-END:variables
+
+    private static java.util.List<java.lang.String> viewListDataReservasiParking(int userId) {
+        project_client_taliscocaa.ProjectWebservice_Service service = new project_client_taliscocaa.ProjectWebservice_Service();
+        project_client_taliscocaa.ProjectWebservice port = service.getProjectWebservicePort();
+        return port.viewListDataReservasiParking(userId);
+    }
+
+    private static void updateDataReservasiParking(int reservasiId) {
+        project_client_taliscocaa.ProjectWebservice_Service service = new project_client_taliscocaa.ProjectWebservice_Service();
+        project_client_taliscocaa.ProjectWebservice port = service.getProjectWebservicePort();
+        port.updateDataReservasiParking(reservasiId);
+    }
 }

@@ -31,10 +31,17 @@ public class Reservasi_Acara extends javax.swing.JFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         tableAcara = new javax.swing.JTable();
+        jLabel2 = new javax.swing.JLabel();
         btnClaim = new javax.swing.JButton();
+        btnClaim2 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(null);
 
+        jScrollPane1.setBackground(new java.awt.Color(204, 204, 204));
+
+        tableAcara.setBackground(new java.awt.Color(204, 204, 204));
         tableAcara.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null},
@@ -57,39 +64,42 @@ public class Reservasi_Acara extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tableAcara);
 
+        getContentPane().add(jScrollPane1);
+        jScrollPane1.setBounds(100, 80, 710, 350);
+
+        jLabel2.setFont(new java.awt.Font("Serif", 1, 36)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("RESERVASI ACARA");
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(280, 10, 360, 47);
+
+        btnClaim.setBackground(new java.awt.Color(204, 204, 204));
+        btnClaim.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btnClaim.setForeground(new java.awt.Color(51, 51, 51));
         btnClaim.setText("Claim");
         btnClaim.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnClaimActionPerformed(evt);
             }
         });
+        getContentPane().add(btnClaim);
+        btnClaim.setBounds(770, 450, 100, 32);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(701, Short.MAX_VALUE)
-                .addComponent(btnClaim)
-                .addGap(102, 102, 102))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(35, 35, 35)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 810, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(30, Short.MAX_VALUE)))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(476, Short.MAX_VALUE)
-                .addComponent(btnClaim)
-                .addContainerGap())
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(32, 32, 32)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(46, Short.MAX_VALUE)))
-        );
+        btnClaim2.setBackground(new java.awt.Color(204, 204, 204));
+        btnClaim2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btnClaim2.setForeground(new java.awt.Color(51, 51, 51));
+        btnClaim2.setText("Exit");
+        btnClaim2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnClaim2ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnClaim2);
+        btnClaim2.setBounds(60, 450, 100, 32);
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/background/ACARA.png"))); // NOI18N
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(0, 0, 900, 500);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -121,6 +131,12 @@ public class Reservasi_Acara extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Acara sudah diklaim.");
         }
     }//GEN-LAST:event_btnClaimActionPerformed
+
+    private void btnClaim2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClaim2ActionPerformed
+        // TODO add your handling code here:
+        thankyou thanks = new thankyou();
+        thanks.show();
+    }//GEN-LAST:event_btnClaim2ActionPerformed
     
     public void refreshTable() {
         DefaultTableModel tableModel = (DefaultTableModel) tableAcara.getModel();
@@ -174,6 +190,9 @@ public class Reservasi_Acara extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnClaim;
+    private javax.swing.JButton btnClaim2;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tableAcara;
     // End of variables declaration//GEN-END:variables

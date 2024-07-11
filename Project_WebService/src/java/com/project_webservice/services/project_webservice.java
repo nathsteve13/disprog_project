@@ -9,6 +9,7 @@ import com.project_webservice.model.Acara;
 import com.project_webservice.model.Reservasi_acara;
 import com.project_webservice.model.Reservasi_parking;
 import com.project_webservice.model.User;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import javax.jws.WebService;    
 import javax.jws.WebParam;
@@ -116,9 +117,9 @@ public class project_webservice {
     
     @WebMethod(operationName = "insertDataReservasiParking") 
     public void insertDataReservasiParking(@WebParam(name = "user_id") int user_id,
-            @WebParam(name = "parking_id") int parking_id)
+            @WebParam(name = "parking_id") int parking_id,@WebParam(name = "tanggal_parkir") String tanggal_parkir)
              {
-        pr = new Reservasi_parking(parking_id, user_id);
+        pr = new Reservasi_parking(parking_id, user_id,Timestamp.valueOf(tanggal_parkir));
         pr.insertData();
     }
 }

@@ -32,7 +32,6 @@ public class Register extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        labelRegister = new javax.swing.JLabel();
         labelUsername = new javax.swing.JLabel();
         txtUsername = new javax.swing.JTextField();
         labelPassword = new javax.swing.JLabel();
@@ -42,78 +41,66 @@ public class Register extends javax.swing.JFrame {
         btnRegister = new javax.swing.JButton();
         labelUsername1 = new javax.swing.JLabel();
         txtNama = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(1280, 800));
+        getContentPane().setLayout(null);
 
-        labelRegister.setFont(new java.awt.Font("Serif", 1, 36)); // NOI18N
-        labelRegister.setText("REGISTER");
-
+        labelUsername.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        labelUsername.setForeground(new java.awt.Color(0, 0, 0));
         labelUsername.setText("Username");
+        getContentPane().add(labelUsername);
+        labelUsername.setBounds(70, 180, 80, 20);
+        getContentPane().add(txtUsername);
+        txtUsername.setBounds(70, 200, 400, 22);
 
+        labelPassword.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        labelPassword.setForeground(new java.awt.Color(0, 0, 0));
         labelPassword.setText("Password");
+        getContentPane().add(labelPassword);
+        labelPassword.setBounds(70, 300, 70, 20);
+        getContentPane().add(txtPassword);
+        txtPassword.setBounds(70, 320, 400, 22);
 
+        labelEmail.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        labelEmail.setForeground(new java.awt.Color(0, 0, 0));
         labelEmail.setText("Email");
+        getContentPane().add(labelEmail);
+        labelEmail.setBounds(70, 120, 50, 20);
+        getContentPane().add(txtEmail);
+        txtEmail.setBounds(70, 140, 400, 22);
 
+        btnRegister.setBackground(new java.awt.Color(204, 204, 204));
+        btnRegister.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnRegister.setForeground(new java.awt.Color(51, 51, 51));
         btnRegister.setText("Register");
         btnRegister.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnRegisterActionPerformed(evt);
             }
         });
+        getContentPane().add(btnRegister);
+        btnRegister.setBounds(370, 370, 100, 27);
 
+        labelUsername1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        labelUsername1.setForeground(new java.awt.Color(0, 0, 0));
         labelUsername1.setText("Nama");
+        getContentPane().add(labelUsername1);
+        labelUsername1.setBounds(70, 240, 60, 20);
+        getContentPane().add(txtNama);
+        txtNama.setBounds(70, 260, 400, 22);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(235, Short.MAX_VALUE)
-                .addComponent(labelRegister)
-                .addGap(327, 327, 327))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(220, 220, 220)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(labelUsername1)
-                    .addComponent(txtNama, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(labelPassword)
-                        .addComponent(txtPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(147, 147, 147)
-                        .addComponent(btnRegister))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(labelEmail)
-                        .addComponent(labelUsername)
-                        .addComponent(txtUsername, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
-                        .addComponent(txtEmail)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(38, 38, 38)
-                .addComponent(labelRegister)
-                .addGap(18, 18, 18)
-                .addComponent(labelEmail)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(labelUsername)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(14, 14, 14)
-                .addComponent(labelUsername1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtNama, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(labelPassword)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29)
-                .addComponent(btnRegister)
-                .addContainerGap(96, Short.MAX_VALUE))
-        );
+        jLabel1.setFont(new java.awt.Font("Serif", 1, 36)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel1.setText("REGISTER");
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(180, 50, 200, 47);
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/background/REGISTER (1).png"))); // NOI18N
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(0, 0, 900, 500);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -134,7 +121,8 @@ public class Register extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Register berhasil!");
                 Menu main = new Menu();
                 main.user_id = Integer.parseInt(results[1]);
-                main.show();
+                Login login = new Login();
+                login.show();
 
             } else if(hasil.equals("FALSE")) {
                 JOptionPane.showMessageDialog(null, "Register gagal, email sudah terdaftar!");
@@ -182,9 +170,10 @@ public class Register extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnRegister;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel labelEmail;
     private javax.swing.JLabel labelPassword;
-    private javax.swing.JLabel labelRegister;
     private javax.swing.JLabel labelUsername;
     private javax.swing.JLabel labelUsername1;
     private javax.swing.JTextField txtEmail;

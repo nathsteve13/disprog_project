@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author natha
+ * @author Jason Nathaniel
  */
 public class Reservasi_parking extends MyModel {
     private int reservasi_id;
@@ -34,11 +34,12 @@ public class Reservasi_parking extends MyModel {
     public Reservasi_parking(int reservasi_id){
         this.reservasi_id = reservasi_id;
     }
-    public Reservasi_parking(int parking_parking_id, int user_user_id) {
+    public Reservasi_parking(int parking_parking_id, int user_user_id, Timestamp tanggal_parkir) {
         this.parking_parking_id=new Parking();
         this.parking_parking_id.setParking_id(parking_parking_id);
         this.user_user_id = new User();
         this.user_user_id.setUser_id(user_user_id);
+        this.tanggal_parkir=tanggal_parkir;
     }
     
     public Reservasi_parking(int reservasi_id, Timestamp tanggal_parkir, int slot_reservasi, String status_reservasi, int parking_parking_id, int user_user_id) {
@@ -108,7 +109,7 @@ public class Reservasi_parking extends MyModel {
             if (!MyModel.conn.isClosed()) {
                 PreparedStatement sql = MyModel.conn.prepareStatement(
                         "INSERT INTO reservasi_parking (tanggal_parkir, slot_reservasi, status_reservasi, parking_parking_id, user_user_id) VALUES (?, ?, ?, ?, ?)");
-                sql.setTimestamp(1, new java.sql.Timestamp(System.currentTimeMillis()));
+                sql.setTimestamp(1, this.tanggal_parkir);
                 sql.setInt(2, 1);
                 sql.setString(3, "Not Claimed");
                 sql.setInt(4, this.parking_parking_id.getParking_id());
