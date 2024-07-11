@@ -7,6 +7,7 @@ package com.project_webservice.services;
 import com.project_webservice.model.Parking;
 import com.project_webservice.model.Acara;
 import com.project_webservice.model.Reservasi_acara;
+import com.project_webservice.model.Reservasi_parking;
 import com.project_webservice.model.User;
 import java.util.ArrayList;
 import javax.jws.WebService;    
@@ -28,6 +29,7 @@ public class project_webservice {
     User u;
     Acara a;
     Reservasi_acara ar;
+    Reservasi_parking pr;
     @WebMethod(operationName = "checkLogin")
     public String checkLogin(@WebParam(name = "username") String username, @WebParam(name = "password") String password) {
         u = new User();
@@ -87,5 +89,22 @@ public class project_webservice {
             @WebParam(name = "acara_id") int acara_id) {
         ar = new Reservasi_acara(jumlah_tiket, user_id, acara_id);
         ar.insertData();
+    }
+    @WebMethod(operationName = "viewListDataReservasiParking")
+    public ArrayList<String> viewListDataReservasiParking() {
+        pr = new Reservasi_parking();
+        return pr.viewListData();
+    }
+    @WebMethod(operationName = "updateDataReservasiParking") 
+    public void updateDataReservasiParking(@WebParam(name = "reservasi_id") int reservasi_id) {
+        pr = new Reservasi_parking(reservasi_id);
+        pr.updateData();
+    }
+    @WebMethod(operationName = "insertDataReservasiParking") 
+    public void insertDataReservasiParking(@WebParam(name = "user_id") int user_id,
+            @WebParam(name = "acara_id") int acara_id)
+             {
+        pr = new Reservasi_parking(user_id, acara_id);
+        pr.insertData();
     }
 }

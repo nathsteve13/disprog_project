@@ -4,6 +4,8 @@
  */
 package com.project_webservice.model;
 
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 
@@ -13,31 +15,44 @@ import java.util.ArrayList;
  */
 public class Reservasi_parking extends MyModel {
     private int reservasi_id;
-    private Timestamp tanggal_reservasi;
-    private int jumlah_tiket;
+    private Timestamp tanggal_parkir;
+    private int slot_reservasi;
     private String status_reservasi;
-    private User user_id;
-    private Acara acara_id;
+    private Parking parking_parking_id;
+    private User user_user_id;
     
     public Reservasi_parking(){
         this.reservasi_id=0;
-        this.tanggal_reservasi=new java.sql.Timestamp(System.currentTimeMillis());
-        this.jumlah_tiket=0;
+        this.tanggal_parkir=new java.sql.Timestamp(System.currentTimeMillis());
+        this.slot_reservasi=0;
         this.status_reservasi="";
-        this.user_id =new User();
-        this.user_id.setUser_id(0);
-        this.acara_id = new Acara();
-        this.acara_id.setAcara_id(0);
+        this.parking_parking_id=new Parking();
+        this.parking_parking_id.setParking_id(0);
+        this.user_user_id=new User();
+        this.user_user_id.setUser_id(0);
+    }
+    public Reservasi_parking(int reservasi_id){
+        this.reservasi_id=reservasi_id;
+    }
+    public Reservasi_parking(int parking_parking_id, int user_user_id) {
+        this.parking_parking_id=new Parking();
+        this.parking_parking_id.setParking_id(parking_parking_id);
+        this.user_user_id = new User();
+        this.user_user_id.setUser_id(user_user_id);
+    }
+    
+    public Reservasi_parking(int reservasi_id, Timestamp tanggal_parkir, int slot_reservasi, String status_reservasi, int parking_parking_id, int user_user_id) {
+        this.reservasi_id = reservasi_id;
+        this.tanggal_parkir = tanggal_parkir;
+        this.slot_reservasi = slot_reservasi;
+        this.status_reservasi = status_reservasi;
+        this.parking_parking_id=new Parking();
+        this.parking_parking_id.setParking_id(parking_parking_id);
+        this.user_user_id = new User();
+        this.user_user_id.setUser_id(user_user_id);
     }
 
-    public Reservasi_parking(int reservasi_id, Timestamp tanggal_reservasi, int jumlah_tiket, String status_reservasi, User user_id, Acara acara_id) {
-        this.reservasi_id = reservasi_id;
-        this.tanggal_reservasi = tanggal_reservasi;
-        this.jumlah_tiket = jumlah_tiket;
-        this.status_reservasi = status_reservasi;
-        this.user_id = user_id;
-        this.acara_id = acara_id;
-    }
+    
 
     public int getReservasi_id() {
         return reservasi_id;
@@ -47,20 +62,20 @@ public class Reservasi_parking extends MyModel {
         this.reservasi_id = reservasi_id;
     }
 
-    public Timestamp getTanggal_reservasi() {
-        return tanggal_reservasi;
+    public Timestamp getTanggal_parkir() {
+        return tanggal_parkir;
     }
 
-    public void setTanggal_reservasi(Timestamp tanggal_reservasi) {
-        this.tanggal_reservasi = tanggal_reservasi;
+    public void setTanggal_parkir(Timestamp tanggal_parkir) {
+        this.tanggal_parkir = tanggal_parkir;
     }
 
-    public int getJumlah_tiket() {
-        return jumlah_tiket;
+    public int getSlot_reservasi() {
+        return slot_reservasi;
     }
 
-    public void setJumlah_tiket(int jumlah_tiket) {
-        this.jumlah_tiket = jumlah_tiket;
+    public void setSlot_reservasi(int slot_reservasi) {
+        this.slot_reservasi = slot_reservasi;
     }
 
     public String getStatus_reservasi() {
@@ -71,30 +86,55 @@ public class Reservasi_parking extends MyModel {
         this.status_reservasi = status_reservasi;
     }
 
-    public User getUser_id() {
-        return user_id;
+    public Parking getParking_parking_id() {
+        return parking_parking_id;
     }
 
-    public void setUser_id(User user_id) {
-        this.user_id = user_id;
+    public void setParking_parking_id(Parking parking_parking_id) {
+        this.parking_parking_id = parking_parking_id;
     }
 
-    public Acara getAcara_id() {
-        return acara_id;
+    public User getUser_user_id() {
+        return user_user_id;
     }
 
-    public void setAcara_id(Acara acara_id) {
-        this.acara_id = acara_id;
+    public void setUser_user_id(User user_user_id) {
+        this.user_user_id = user_user_id;
     }
 
     @Override
     public void insertData() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        try {
+            if (!MyModel.conn.isClosed()) {
+                PreparedStatement sql = MyModel.conn.prepareStatement(
+                        "INSERT INTO reservasi_parking (tanggal_parkir, slot_reservasi, status_reservasi, parking_parking_id, user_user_id) VALUES (?, ?, ?, ?, ?)");
+                sql.setTimestamp(1, new java.sql.Timestamp(System.currentTimeMillis()));
+                sql.setInt(2, 1);
+                sql.setString(3, "Not Claimed");
+                sql.setInt(4, this.parking_parking_id.getParking_id());
+                sql.setInt(5, this.user_user_id.getUser_id());
+                sql.executeUpdate();
+                sql.close();
+            }
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
     }
 
     @Override
     public void updateData() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+         try {
+            if (!MyModel.conn.isClosed()) {
+                PreparedStatement sql = MyModel.conn.prepareStatement(
+                        "UPDATE reservasi_parking SET status_reservasi = ? WHERE reservasi_id = ?");
+                sql.setString(1, "Claimed");
+                sql.setInt(2, this.reservasi_id);
+                sql.executeUpdate();
+                sql.close();
+            }
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
     }
 
     @Override
@@ -104,8 +144,42 @@ public class Reservasi_parking extends MyModel {
 
     @Override
     public ArrayList<String> viewListData() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        ArrayList<String> data = new ArrayList<String>();
+    try {
+        if (!MyModel.conn.isClosed()) {
+            PreparedStatement sql = MyModel.conn.prepareStatement(
+                    "SELECT * FROM reservasi_parking WHERE user_user_id = ?");
+            sql.setInt(1, this.user_user_id.getUser_id());
+            ResultSet result = sql.executeQuery();
+
+            while (result.next()) {
+                Reservasi_parking r = new Reservasi_parking(
+                        result.getInt("reservasi_id"),
+                        result.getTimestamp("tanggal_parkir"),
+                        result.getInt("slot_reservasi"),
+                        result.getString("status_reservasi"),
+                        result.getInt("parking_parking_id"),
+                        result.getInt("user_user_id")
+                );
+
+                data.add(r.getReservasi_id() + "%" +
+                        r.getTanggal_parkir() + "%" +
+                        r.getSlot_reservasi() + "%" +
+                        r.getStatus_reservasi() + "%" +
+                        r.getParking_parking_id()+ "%" +
+                        r.getUser_user_id());
+            }
+            result.close();
+            sql.close();
+        }
+    } catch (Exception ex) {
+        System.out.println(ex.getMessage());
     }
+    return data;
+    }
+
+   
+
     
     
 }
